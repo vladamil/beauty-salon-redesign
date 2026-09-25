@@ -1,0 +1,133 @@
+.nails {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.contentBg {
+   position: relative;
+   border-radius: 20px;
+   z-index: 0;
+   overflow: hidden;
+}
+
+.bgImage {
+   object-fit: cover;
+   object-position: 50% 0;
+   opacity: 0.15;
+}
+
+.content {
+   display: flex;
+   gap: 40px;
+   position: relative;
+   padding: 60px 40px;
+   z-index: 1;
+}
+
+.reverse {
+   flex-direction: row-reverse;
+}
+
+.services {
+   flex: 1;
+}
+
+.services h3 {
+   font-size: 24px;
+   margin-bottom: 36px;
+   border-bottom: 4px solid var(--main-color);
+   text-transform: uppercase;
+}
+
+h3.right {
+   text-align: right;
+}
+
+.services p {
+   margin-bottom: 12px;
+   font-size: 18px;
+}
+
+.services .icon {
+   color: var(--main-color);
+   margin-right: 4px;
+   transform: translateY(2px);
+}
+
+/* BENTO GRID LOGIC */
+.bentoGrid {
+   flex: 2;
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   grid-auto-rows: 150px;
+   gap: 10px;
+   grid-auto-flow: dense;
+}
+
+.item {
+   position: relative;
+   overflow: hidden;
+   border: 2px solid var(--second-color);
+   border-radius: 10px;
+}
+
+.item img {
+   object-fit: cover;
+   transition: transform 0.5s ease;
+}
+
+/* Defining Bento "Spans" */
+.item.wide {
+   grid-column: span 2;
+}
+.item.tall {
+   grid-row: span 2;
+}
+.item.full {
+   grid-column: span 2;
+   grid-row: span 2;
+}
+
+.item:hover img {
+   transform: scale(1.1);
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 960px) {
+   .content {
+      flex-direction: column;
+   }
+
+   .services h3 {
+      font-size: 20px;
+   }
+
+   .services p {
+      margin-bottom: 8px;
+      font-size: 16px;
+   }
+
+   .bentoGrid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 120px;
+   }
+
+   .item.wide {
+      grid-column: span 1;
+   }
+   .item.tall {
+      grid-row: span 1;
+   }
+   .item.full {
+      grid-column: span 1;
+      grid-row: span 1;
+   }
+}
+
+@media screen and (max-width: 768px) {
+   .content {
+      padding: 40px 20px;
+   }
+}

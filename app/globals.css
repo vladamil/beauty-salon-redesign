@@ -1,0 +1,45 @@
+:root {
+   --main-color: #9b111e;
+   --second-color: silver;
+   --bg-color: #07070d;
+}
+
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+}
+
+html {
+   scroll-behavior: smooth;
+   scroll-padding-top: 50px;
+}
+
+section {
+   background-color: var(--bg-color);
+   color: white;
+   min-height: 100vh;
+}
+
+.container {
+   width: 1300px;
+   max-width: 100%;
+   margin: 0 auto;
+   padding: 40px 20px;
+}
+
+#tsparticles {
+   width: 100% !important;
+   height: 100% !important;
+}
+
+#tsparticles canvas {
+   width: 100% !important;
+   height: 100% !important;
+}
+
+@media screen and (max-width: 960px) {
+   html {
+      scroll-padding-top: 0px;
+   }
+}

@@ -40,72 +40,78 @@ export default function Navbar() {
 
    return (
       <>
-         {/* SEntinel div for triggering scroll style for navbar */}
+         {/* Sentinel div for triggering scroll style for navbar */}
          <div ref={triggerRef} className={styles.trigger} />
 
          <nav
             className={`${scrollNav && styles.navScroll} ${styles.navbar}`}
             aria-label="Main Desktop Nav"
          >
-            <div className={styles.title}>Bellca Branchie Studio</div>
-            <ul className={styles.navList}>
-               <li>
-                  <button
-                     className={styles.navItem}
-                     onClick={() => scrollToSection('home')}
+            <div className={styles.title}>BELLCA STUDIO</div>
+            <div className={styles.navRight}>
+               <ul className={styles.navList}>
+                  <li>
+                     <button
+                        className={`${styles.navItem} ${styles.navItemActive}`}
+                        onClick={() => scrollToSection('home')}
+                     >
+                        Home
+                     </button>
+                  </li>
+                  <li>
+                     <button
+                        className={styles.navItem}
+                        onClick={() => scrollToSection('o-nama')}
+                     >
+                        O nama
+                     </button>
+                  </li>
+                  <li>
+                     <button
+                        className={styles.navItem}
+                        onClick={() => scrollToSection('nokti')}
+                     >
+                        Noktići
+                     </button>
+                  </li>
+                  <li>
+                     <button
+                        className={styles.navItem}
+                        onClick={() => scrollToSection('trepavice')}
+                     >
+                        Trepavice
+                     </button>
+                  </li>
+                  <li>
+                     <button
+                        className={styles.navItem}
+                        onClick={() => scrollToSection('kontakt')}
+                     >
+                        Kontakt
+                     </button>
+                  </li>
+               </ul>
+               <div className={styles.socialLinks}>
+                  <a
+                     href="https://www.facebook.com/bellca.branchie/"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     aria-label="Facebook"
+                     className={styles.socialIcon}
                   >
-                     Home
-                  </button>
-               </li>
-               <li>
-                  <button
-                     className={styles.navItem}
-                     onClick={() => scrollToSection('o-nama')}
-                  >
-                     O nama
-                  </button>
-               </li>
-               <li>
-                  <button
-                     className={styles.navItem}
-                     onClick={() => scrollToSection('nokti')}
-                  >
-                     Noktići
-                  </button>
-               </li>
-               <li>
-                  <button
-                     className={styles.navItem}
-                     onClick={() => scrollToSection('trepavice')}
-                  >
-                     Trepavice
-                  </button>
-               </li>
-               <li>
-                  <button
-                     className={styles.navItem}
-                     onClick={() => scrollToSection('kontakt')}
-                  >
-                     Kontakt
-                  </button>
-               </li>
-            </ul>
-            <div>
-               <a
-                  href="https://www.facebook.com/bellca.branchie/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-               >
-                  <FaFacebook className={styles.socialIcon} />
-               </a>
+                     <FaFacebook />
+                  </a>
 
-               <a
-                  href="https://www.instagram.com/bellcabeauty"
-                  target="_blank"
-                  rel="noopener noreferrer"
-               >
-                  <FaInstagram className={styles.socialIcon} />
-               </a>
+                  <a
+                     href="https://www.instagram.com/bellcabeauty"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     aria-label="Instagram"
+                     className={styles.socialIcon}
+                  >
+                     <FaInstagram />
+                  </a>
+               </div>
             </div>
          </nav>
          {/* MOBILE MENU BUTTON */}

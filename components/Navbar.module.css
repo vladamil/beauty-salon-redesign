@@ -11,58 +11,95 @@
    top: 0;
    left: 0;
    width: 100%;
-   background: var(--main-color);
+   background: var(--bg-color);
    z-index: 1000;
-   border-bottom: 2px solid var(--second-color);
-   height: 80px;
+   height: 84px;
    display: flex;
    align-items: center;
    justify-content: space-between;
-   padding: 0 2rem;
-   transition: all 0.3s linear;
+   padding: 0 56px;
+   transition: all 0.3s ease;
 }
 
 .navScroll {
-   height: 50px;
-   /* Glass Effect */
-   background: rgba(155, 17, 30, 0.8);
+   height: 60px;
+   background: rgba(59, 10, 42, 0.85);
    backdrop-filter: blur(10px);
    -webkit-backdrop-filter: blur(10px); /* Safari support */
-
-   border-bottom: 1px solid var(--second-color);
+   border-bottom: 1px solid rgba(255, 246, 236, 0.15);
 }
 
 .title {
-   font-size: 30px;
+   font-family: var(--font-display), 'Arial Narrow', sans-serif;
+   font-size: 26px;
+   letter-spacing: 0.02em;
    color: var(--second-color);
-   font-family: var(--font-italianno);
-   letter-spacing: 1.1;
+}
+
+.navRight {
+   display: flex;
+   align-items: center;
+   gap: 26px;
 }
 
 .navList {
    display: flex;
-   justify-content: center;
    align-items: center;
+   gap: 14px;
    list-style: none;
 }
 
 .navItem {
+   display: inline-block;
    text-decoration: none;
    background: none;
    border: none;
    cursor: pointer;
-   padding: 0.5rem 1rem;
-   position: relative;
-   font-size: 1rem;
-   color: white;
    font-family: inherit;
+   font-size: 12px;
+   font-weight: 700;
+   letter-spacing: 0.03em;
+   text-transform: uppercase;
+   color: #f5d9e0;
+   padding: 9px 12px;
+   border-radius: 999px;
+   transition: opacity 0.25s ease;
+}
+
+.navItem:hover {
+   opacity: 0.7;
+}
+
+.navItemActive {
+   background: var(--main-color);
+   color: var(--bg-color);
+   padding: 9px 18px;
+}
+
+.socialLinks {
+   display: flex;
+   align-items: center;
+   gap: 8px;
 }
 
 .socialIcon {
-   font-size: 20px;
-   margin-left: 16px;
+   width: 32px;
+   height: 32px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: rgba(255, 246, 236, 0.12);
    color: var(--second-color);
-   cursor: pointer;
+   font-size: 14px;
+   transition:
+      background-color 0.25s ease,
+      transform 0.25s ease;
+}
+
+.socialIcon:hover {
+   background: rgba(255, 246, 236, 0.24);
+   transform: translateY(-2px);
 }
 
 .mobileBtn {

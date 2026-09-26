@@ -1,21 +1,44 @@
+.backdrop {
+   display: none;
+}
+
 .sideMenu {
    display: none;
 }
 
 @media screen and (max-width: 960px) {
-   .sideMenu {
+   .backdrop {
       display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 9, 14, 0.6);
+      z-index: 9998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+   }
+
+   .backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+   }
+
+   .sideMenu {
+      display: flex;
+      flex-direction: column;
       position: fixed;
       top: 0;
       right: 0;
-      height: 100vh;
+      bottom: 0;
+      height: 100dvh;
       width: 85%;
       max-width: 400px;
-      background-color: var(--main-color);
+      padding: 30px 24px;
+      background-color: var(--second-color);
+      border-left: 3px solid var(--main-color);
       z-index: 9999;
-      border-left: 3px solid var(--second-color);
       transform: translateX(100%);
-      transition: transform 0.4s ease;
+      transition: transform 0.4s cubic-bezier(0.22, 0.68, 0, 1);
    }
 
    .sideMenu.open {
@@ -23,60 +46,89 @@
    }
 
    .sideClose {
-      position: fixed;
-      top: 30px;
-      right: 30px;
+      align-self: flex-end;
       background: transparent;
-      font-size: 30px;
-      color: var(--second-color);
       border: none;
+      font-size: 36px;
+      color: var(--bg-color);
       cursor: pointer;
    }
 
    .sideTitle {
-      position: fixed;
-      font-size: 24px;
-      color: var(--second-color);
-      font-family: var(--font-italianno);
-      letter-spacing: 1;
-      top: 30px;
-      left: 20px;
+      font-family: var(--font-display), 'Arial Narrow', sans-serif;
+      font-size: 18px;
+      text-align: center;
+      color: var(--bg-color);
+      margin: 8px 0 0;
    }
 
    .sideLinks {
-      height: 85%;
+      flex: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
    }
 
    .navList {
+      width: 100%;
       list-style: none;
-   }
-   .navList li {
-      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
    }
 
    .navItem {
+      display: inline-block;
       text-decoration: none;
-      font-size: 20px;
-      color: var(--second-color);
-      text-transform: uppercase;
-      background: transparent;
-      border: none;
       font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      background: var(--bg-color);
+      color: var(--second-color);
+      border: none;
+      padding: 14px 30px;
+      border-radius: 999px;
       cursor: pointer;
+      transform: rotate(-2deg);
+      transition: transform 0.2s ease;
+   }
+
+   .navList li:nth-child(even) .navItem {
+      background: var(--main-color);
+      color: var(--bg-color);
+      transform: rotate(2deg);
+   }
+
+   .navItem:active {
+      transform: scale(0.96);
    }
 
    .sideSocials {
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
-      font-size: 30px;
+      justify-content: center;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 24px;
    }
 
-   .sideSocials a {
-      text-decoration: none;
-      color: silver;
+   .socialIcon {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-color);
+      color: var(--second-color);
+      font-size: 15px;
+   }
+
+   .handle {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--bg-color);
+      opacity: 0.6;
+      margin-left: 4px;
    }
 }

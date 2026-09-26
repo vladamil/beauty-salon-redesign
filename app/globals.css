@@ -19,17 +19,11 @@ h4 {
 
 html {
    scroll-behavior: smooth;
-   scroll-padding-top: 50px;
-}
-
-section {
-   background-color: var(--bg-color);
-   color: white;
-   min-height: 100vh;
+   scroll-padding-top: 60px;
 }
 
 .container {
-   width: 1300px;
+   width: 1400px;
    max-width: 100%;
    margin: 0 auto;
    padding: 40px 20px;

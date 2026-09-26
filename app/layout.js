@@ -1,17 +1,17 @@
-import { Poppins, Italianno } from 'next/font/google';
+import { Anton, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
-const poppins = Poppins({
+const spaceGrotesk = Space_Grotesk({
    subsets: ['latin'],
    display: 'swap', // Prevents invisible text during loading
-   weight: ['200', '400', '500', '700'],
+   weight: ['400', '500', '600', '700'],
 });
 
-const italianno = Italianno({
+const anton = Anton({
    subsets: ['latin'],
    display: 'swap', // Prevents invisible text during loading
    weight: ['400'],
-   variable: '--font-italianno',
+   variable: '--font-display',
 });
 
 export const metadata = {
@@ -22,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
    return (
-      <html lang="en" className={`${poppins.className} ${italianno.variable}`}>
+      <html lang="en" className={`${spaceGrotesk.className} ${anton.variable}`}>
          <body>{children}</body>
       </html>
    );

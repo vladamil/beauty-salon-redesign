@@ -10,7 +10,7 @@ export default function CtaButton() {
             document.getElementById('kontakt').scrollIntoView();
          }}
       >
-         Zakažite termin
+         ZAKAŽITE TERMIN →
       </button>
    );
 }

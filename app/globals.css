@@ -1,13 +1,20 @@
 :root {
-   --main-color: #9b111e;
-   --second-color: silver;
-   --bg-color: #07070d;
+   --main-color: #e8637a;
+   --second-color: #fff6ec;
+   --bg-color: #3b0a2a;
 }
 
 * {
    box-sizing: border-box;
    padding: 0;
    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+   font-family: var(--font-display), 'Arial Narrow', sans-serif;
 }
 
 html {
@@ -26,16 +33,6 @@ section {
    max-width: 100%;
    margin: 0 auto;
    padding: 40px 20px;
-}
-
-#tsparticles {
-   width: 100% !important;
-   height: 100% !important;
-}
-
-#tsparticles canvas {
-   width: 100% !important;
-   height: 100% !important;
 }
 
 @media screen and (max-width: 960px) {

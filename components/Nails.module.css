@@ -274,3 +274,194 @@
    font-weight: 700;
    color: var(--main-color);
 }
+
+/* TABLET: photos + header/quote side by side, cards full width below */
+@media (min-width: 768px) and (max-width: 1099px) {
+   .inner {
+      grid-template-columns: 320px 1fr;
+      grid-template-rows: 1fr auto auto 1fr auto;
+      grid-template-areas:
+         'visual .'
+         'visual header'
+         'visual quote'
+         'visual .'
+         'cards cards';
+      column-gap: 36px;
+   }
+
+   .badge {
+      width: 40px;
+      height: 40px;
+      font-size: 15px;
+   }
+
+   .kicker {
+      font-size: 11px;
+   }
+
+   .heading {
+      font-size: 72px;
+   }
+
+   .visual {
+      height: 420px;
+   }
+
+   .arch {
+      left: 30px;
+      top: 0;
+      width: 240px;
+      height: 340px;
+      border-width: 7px;
+      border-radius: 120px 120px 22px 22px;
+   }
+
+   .circle {
+      top: 240px;
+      width: 140px;
+      height: 140px;
+      border-width: 7px;
+   }
+
+   .spinBadge {
+      top: -10px;
+      width: 96px;
+      height: 96px;
+   }
+
+   .cards {
+      gap: 12px;
+      margin-top: 8px;
+   }
+
+   .quote {
+      grid-area: quote;
+      align-self: start;
+      justify-self: stretch;
+      width: auto;
+      margin-left: 0;
+      transform: rotate(-2deg);
+   }
+}
+
+/* PHONE: everything stacked and centered */
+@media (max-width: 767px) {
+   .nokti {
+      padding: 20px 0;
+   }
+
+   .rings {
+      top: -60px;
+      right: -70px;
+      width: 220px;
+      height: 220px;
+      stroke-width: 3;
+   }
+
+   .inner {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+         'header'
+         'visual'
+         'cards'
+         'quote';
+      row-gap: 20px;
+   }
+
+   .header {
+      text-align: center;
+   }
+
+   .kickerRow {
+      justify-content: center;
+      gap: 10px;
+   }
+
+   .badge {
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
+   }
+
+   .kicker {
+      font-size: 10.5px;
+   }
+
+   .heading {
+      font-size: 52px;
+      margin-top: 8px;
+   }
+
+   .visual {
+      justify-self: center;
+      width: 100%;
+      max-width: 350px;
+      height: 390px;
+   }
+
+   .arch {
+      left: calc(50% - 110px);
+      top: 10px;
+      width: 220px;
+      height: 310px;
+      border-width: 6px;
+      border-radius: 110px 110px 20px 20px;
+   }
+
+   .circle {
+      right: 4px;
+      top: 236px;
+      width: 124px;
+      height: 124px;
+      border-width: 6px;
+   }
+
+   .spinBadge {
+      left: 30px;
+      width: 84px;
+      height: 84px;
+   }
+
+   .cards {
+      gap: 10px;
+   }
+
+   .fullMobile {
+      grid-column: span 2;
+   }
+
+   .card {
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+   }
+
+   .swatch {
+      width: 20px;
+      height: 31px;
+   }
+
+   .cardTitle {
+      font-size: 14px;
+   }
+
+   .techList {
+      gap: 6px;
+   }
+
+   .techChip {
+      padding: 5px 10px;
+      font-size: 11.5px;
+   }
+
+   .quote {
+      grid-area: quote;
+      align-self: auto;
+      justify-self: stretch;
+      width: auto;
+      margin-left: 0;
+      padding: 16px 18px;
+      transform: rotate(-1.5deg);
+   }
+}

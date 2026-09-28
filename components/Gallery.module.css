@@ -1,0 +1,403 @@
+.gallery {
+   position: relative;
+   overflow: hidden;
+   background-color: var(--bg-color);
+   color: var(--second-color);
+   padding: 40px 0;
+}
+
+.rings {
+   position: absolute;
+   top: -170px;
+   right: -150px;
+   width: 540px;
+   height: 540px;
+   fill: none;
+   stroke: var(--second-color);
+   stroke-width: 1.5;
+   pointer-events: none;
+}
+
+.rings circle:first-child {
+   opacity: 0.08;
+}
+
+.rings circle:last-child {
+   opacity: 0.05;
+}
+
+.sparkle {
+   position: absolute;
+   fill: var(--main-color);
+   pointer-events: none;
+}
+
+.sparkleLeft {
+   top: 560px;
+   left: 4%;
+   width: 18px;
+   height: 18px;
+}
+
+.sparkleRight {
+   top: 330px;
+   right: 5%;
+   width: 24px;
+   height: 24px;
+}
+
+/* HEADER */
+
+.header {
+   position: relative;
+   z-index: 1;
+   display: flex;
+   align-items: flex-end;
+   justify-content: space-between;
+   gap: 40px;
+}
+
+.kicker {
+   font-size: 12px;
+   font-weight: 700;
+   letter-spacing: 0.18em;
+   color: var(--main-color);
+}
+
+.heading {
+   font-size: 96px;
+   font-weight: 400;
+   line-height: 1;
+   margin-top: 10px;
+}
+
+.accent {
+   color: var(--main-color);
+}
+
+.intro {
+   max-width: 330px;
+   margin-bottom: 10px;
+   font-size: 15px;
+   font-weight: 500;
+   line-height: 1.6;
+   color: #e9d9de;
+   text-align: right;
+}
+
+/* DECKS: nails | spinning badge | lashes */
+
+.decks {
+   position: relative;
+   z-index: 1;
+   display: grid;
+   grid-template-columns: 1fr 240px 1fr;
+   align-items: center;
+   margin-top: 44px;
+}
+
+.deck {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.deckTitle {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+}
+
+.deckTitle h3 {
+   font-size: 34px;
+   font-weight: 400;
+   letter-spacing: 0.02em;
+}
+
+.badge {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex: none;
+   width: 44px;
+   height: 44px;
+   border-radius: 50%;
+   background: var(--main-color);
+   color: var(--bg-color);
+   font-size: 16px;
+   font-weight: 700;
+}
+
+.stack {
+   position: relative;
+   width: 360px;
+   height: 490px;
+   touch-action: pan-y;
+   user-select: none;
+}
+
+/* POLAROID CARDS */
+
+.card {
+   position: absolute;
+   left: 15px;
+   top: 34px;
+   display: block;
+   width: 330px;
+   padding: 14px 14px 0;
+   border: 0;
+   background: var(--second-color);
+   color: var(--bg-color);
+   font: inherit;
+   text-align: left;
+   box-shadow: 0 22px 36px -16px rgba(0, 0, 0, 0.6);
+}
+
+.photo {
+   position: relative;
+   display: block;
+   height: 340px;
+   overflow: hidden;
+}
+
+.photoImg {
+   object-fit: cover;
+   -webkit-user-drag: none;
+}
+
+.caption {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: 50px;
+   font-size: 12px;
+   font-weight: 700;
+   letter-spacing: 0.12em;
+}
+
+/* Cards peeking out underneath, back (3) to front (1); mirrored for lashes */
+.under .photoImg {
+   filter: brightness(0.82);
+}
+
+.under3 {
+   transform: translate(-22px, 14px) rotate(-10deg);
+}
+
+.under2 {
+   transform: translate(20px, 6px) rotate(7deg);
+}
+
+.under1 {
+   transform: rotate(-3.5deg);
+}
+
+.mirrored .under3 {
+   transform: translate(22px, 14px) rotate(10deg);
+}
+
+.mirrored .under2 {
+   transform: translate(-20px, 6px) rotate(-7deg);
+}
+
+.mirrored .under1 {
+   transform: rotate(3.5deg);
+}
+
+.top {
+   --tilt: 1.5deg;
+   --deal-x: 70px;
+   transform: rotate(var(--tilt));
+   cursor: zoom-in;
+   transition: box-shadow 0.3s ease;
+}
+
+.mirrored .top {
+   --tilt: -1.5deg;
+   --deal-x: -70px;
+}
+
+.top:hover {
+   box-shadow: 0 30px 46px -16px rgba(0, 0, 0, 0.75);
+}
+
+.top:focus-visible {
+   outline: 3px solid var(--main-color);
+   outline-offset: 4px;
+}
+
+.deal {
+   animation: deal 0.5s cubic-bezier(0.22, 0.68, 0, 1);
+}
+
+@keyframes deal {
+   from {
+      opacity: 0;
+      transform: translate(var(--deal-x), -30px)
+         rotate(calc(var(--tilt) + 14deg));
+   }
+   to {
+      opacity: 1;
+      transform: rotate(var(--tilt));
+   }
+}
+
+/* Enlarge hint in the photo corner */
+.zoom {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   display: grid;
+   place-items: center;
+   width: 36px;
+   height: 36px;
+   border-radius: 50%;
+   background: rgba(59, 10, 42, 0.78);
+   transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.zoom svg {
+   width: 16px;
+   height: 16px;
+   fill: none;
+   stroke: var(--second-color);
+   stroke-width: 2;
+   stroke-linecap: round;
+   stroke-linejoin: round;
+}
+
+.top:hover .zoom {
+   transform: scale(1.1);
+   background: var(--bg-color);
+}
+
+/* CONTROLS */
+
+.controls {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   margin-top: 10px;
+}
+
+.prev {
+   display: grid;
+   place-items: center;
+   width: 50px;
+   height: 50px;
+   border: 1.5px solid rgba(255, 246, 236, 0.35);
+   border-radius: 50%;
+   background: transparent;
+   color: var(--second-color);
+   cursor: pointer;
+   transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.prev:hover {
+   background: rgba(255, 246, 236, 0.12);
+   transform: translateY(-2px);
+}
+
+.arrow {
+   width: 20px;
+   height: 20px;
+   fill: none;
+   stroke: currentColor;
+   stroke-width: 2;
+   stroke-linecap: round;
+   stroke-linejoin: round;
+}
+
+.next {
+   padding: 15px 24px;
+   border: 0;
+   border-radius: 999px;
+   background: var(--main-color);
+   color: var(--bg-color);
+   font: inherit;
+   font-size: 13px;
+   font-weight: 700;
+   letter-spacing: 0.06em;
+   cursor: pointer;
+   transform: rotate(-2deg);
+   transition: transform 0.3s cubic-bezier(0.22, 0.68, 0, 1),
+      box-shadow 0.3s ease;
+}
+
+.mirrored .next {
+   transform: rotate(2deg);
+}
+
+.next:hover,
+.mirrored .next:hover {
+   transform: rotate(0deg) translateY(-3px);
+   box-shadow: 0 16px 24px -10px rgba(0, 0, 0, 0.6);
+}
+
+.prev:focus-visible,
+.next:focus-visible {
+   outline: 3px solid var(--second-color);
+   outline-offset: 3px;
+}
+
+/* SPINNING BADGE */
+
+.spinBadge {
+   position: relative;
+   display: grid;
+   place-items: center;
+   justify-self: center;
+   width: 170px;
+   height: 170px;
+   border-radius: 50%;
+   background: var(--second-color);
+   box-shadow: 0 16px 30px -12px rgba(0, 0, 0, 0.5);
+}
+
+.spinText {
+   position: absolute;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+   fill: var(--bg-color);
+   font-size: 12px;
+   font-weight: 700;
+   letter-spacing: 2px;
+   animation: spin 20s linear infinite;
+}
+
+.spinSparkle {
+   width: 38px;
+   height: 38px;
+   fill: var(--main-color);
+}
+
+@keyframes spin {
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .spinText,
+   .deal {
+      animation: none;
+   }
+}
+
+/* LIGHTBOX + A11Y */
+
+.lightboxSlide {
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+
+.srOnly {
+   position: absolute;
+   width: 1px;
+   height: 1px;
+   overflow: hidden;
+   clip: rect(0 0 0 0);
+   white-space: nowrap;
+}

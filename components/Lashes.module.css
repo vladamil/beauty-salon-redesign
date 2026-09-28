@@ -1,0 +1,200 @@
+.trepavice {
+   background-color: var(--second-color);
+   color: var(--bg-color);
+   padding: 40px 0;
+}
+
+/* Desktop: header + review side by side, three technique cards below */
+.inner {
+   display: grid;
+   grid-template-columns: 1fr 380px;
+   grid-template-areas:
+      'header quote'
+      'cards cards';
+   align-items: end;
+   column-gap: 40px;
+   row-gap: 44px;
+}
+
+/* HEADER */
+
+.header {
+   grid-area: header;
+}
+
+.kickerRow {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+}
+
+.badge {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex: none;
+   width: 44px;
+   height: 44px;
+   border-radius: 50%;
+   background: var(--bg-color);
+   color: var(--second-color);
+   font-weight: 700;
+   font-size: 16px;
+}
+
+.kicker {
+   font-size: 12px;
+   font-weight: 700;
+   letter-spacing: 0.18em;
+}
+
+.heading {
+   font-size: 96px;
+   line-height: 1;
+   margin-top: 10px;
+}
+
+.legend {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   margin-top: 14px;
+   font-size: 11px;
+   font-weight: 700;
+   letter-spacing: 0.16em;
+}
+
+.legendBar {
+   width: 200px;
+   height: 6px;
+   border-radius: 3px;
+   background: linear-gradient(
+      90deg,
+      #f2e3da,
+      var(--main-color),
+      var(--bg-color)
+   );
+}
+
+/* TECHNIQUE CARDS */
+
+.cards {
+   grid-area: cards;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 26px;
+   list-style: none;
+}
+
+.card {
+   padding: 16px 16px 26px;
+   border-radius: 28px;
+   background: #ffffff;
+   box-shadow: 0 18px 34px -18px rgba(59, 10, 42, 0.35);
+   transition: transform 0.3s cubic-bezier(0.22, 0.68, 0, 1);
+}
+
+.card:hover {
+   transform: translateY(-4px);
+}
+
+.featured {
+   background: var(--bg-color);
+   color: var(--second-color);
+}
+
+.photo {
+   position: relative;
+   height: 220px;
+   border-radius: 140px 140px 18px 18px;
+   overflow: hidden;
+}
+
+.photoImg {
+   object-fit: cover;
+}
+
+.body {
+   display: flex;
+   flex-direction: column;
+   padding: 0 10px;
+}
+
+.lashArt {
+   align-self: center;
+   width: 200px;
+   height: 84px;
+   margin: 18px 0 6px;
+   fill: none;
+   stroke: currentColor;
+   stroke-linecap: round;
+}
+
+.meter {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 6px;
+}
+
+.meter span {
+   height: 8px;
+   border-radius: 4px;
+   background: #f2e3da;
+}
+
+.featured .meter span {
+   background: rgba(255, 246, 236, 0.18);
+}
+
+.meter .on,
+.featured .meter .on {
+   background: var(--main-color);
+}
+
+.cardTitle {
+   margin-top: 16px;
+   font-size: 28px;
+   line-height: 1.1;
+   text-transform: uppercase;
+}
+
+.cardDetail {
+   margin-top: 8px;
+   font-size: 13.5px;
+   line-height: 1.5;
+   color: #6e1f35;
+}
+
+.featured .cardDetail {
+   color: #e9d9de;
+}
+
+/* TESTIMONIAL */
+
+.quote {
+   grid-area: quote;
+   padding: 18px 22px;
+   border-radius: 20px 20px 4px 20px;
+   background: var(--main-color);
+   color: var(--bg-color);
+   transform: rotate(2deg);
+   box-shadow: 0 18px 30px -14px rgba(59, 10, 42, 0.4);
+}
+
+.stars {
+   margin-bottom: 6px;
+   font-size: 14px;
+   letter-spacing: 2px;
+}
+
+.quoteText {
+   margin-bottom: 8px;
+   font-size: 14.5px;
+   font-style: italic;
+   line-height: 1.5;
+}
+
+.quoteAuthor {
+   font-size: 12px;
+   font-weight: 700;
+}

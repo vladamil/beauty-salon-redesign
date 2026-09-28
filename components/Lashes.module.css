@@ -198,3 +198,199 @@
    font-size: 12px;
    font-weight: 700;
 }
+
+/* TABLET: same arrangement, tighter sizes so all three cards stay side by side */
+@media (min-width: 768px) and (max-width: 1099px) {
+   .inner {
+      grid-template-columns: 1fr 300px;
+      column-gap: 28px;
+      row-gap: 36px;
+   }
+
+   .badge {
+      width: 40px;
+      height: 40px;
+      font-size: 15px;
+   }
+
+   .kicker {
+      font-size: 11px;
+   }
+
+   .heading {
+      font-size: 72px;
+   }
+
+   .legend {
+      gap: 10px;
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+   }
+
+   .legendBar {
+      width: 130px;
+   }
+
+   .quote {
+      padding: 16px 18px;
+   }
+
+   .quoteText {
+      font-size: 13.5px;
+   }
+
+   .cards {
+      gap: 14px;
+   }
+
+   .card {
+      padding: 12px 12px 22px;
+      border-radius: 24px;
+   }
+
+   .photo {
+      height: 160px;
+      border-radius: 110px 110px 14px 14px;
+   }
+
+   .body {
+      padding: 0 6px;
+   }
+
+   .lashArt {
+      width: 180px;
+      height: 76px;
+      margin: 14px 0 4px;
+   }
+
+   .meter {
+      gap: 5px;
+   }
+
+   .meter span {
+      height: 7px;
+   }
+
+   .cardTitle {
+      margin-top: 14px;
+      font-size: 22px;
+   }
+
+   .cardDetail {
+      margin-top: 6px;
+      font-size: 12.5px;
+   }
+}
+
+/* PHONE: centered header, each technique becomes a compact horizontal row */
+@media (max-width: 767px) {
+   .trepavice {
+      padding: 20px 0;
+   }
+
+   .inner {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+         'header'
+         'cards'
+         'quote';
+      align-items: stretch;
+      row-gap: 26px;
+   }
+
+   .header {
+      text-align: center;
+   }
+
+   .kickerRow,
+   .legend {
+      justify-content: center;
+   }
+
+   .kickerRow {
+      gap: 10px;
+   }
+
+   .badge {
+      width: 36px;
+      height: 36px;
+      font-size: 14px;
+   }
+
+   .kicker {
+      font-size: 10.5px;
+   }
+
+   .heading {
+      font-size: 52px;
+      margin-top: 8px;
+   }
+
+   .legend {
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+   }
+
+   .legendBar {
+      width: 110px;
+      height: 5px;
+   }
+
+   .cards {
+      grid-template-columns: 1fr;
+      gap: 14px;
+   }
+
+   .card {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 20px;
+   }
+
+   .photo {
+      height: 150px;
+      border-radius: 60px 60px 12px 12px;
+   }
+
+   .body {
+      padding: 0;
+   }
+
+   .cardTitle {
+      order: -1;
+      margin-top: 0;
+      font-size: 21px;
+   }
+
+   .lashArt {
+      align-self: flex-start;
+      width: 170px;
+      height: 72px;
+      margin: 2px 0 2px -6px;
+   }
+
+   .meter {
+      gap: 4px;
+   }
+
+   .meter span {
+      height: 6px;
+   }
+
+   .cardDetail {
+      font-size: 12.5px;
+      line-height: 1.45;
+   }
+
+   .quote {
+      padding: 16px 18px;
+      transform: rotate(1.5deg);
+   }
+
+   .quoteText {
+      font-size: 14px;
+   }
+}

@@ -1,108 +1,154 @@
-.testimonialBox {
+/* HEADER */
+
+.kicker {
+   font-size: 12px;
+   font-weight: 700;
+   letter-spacing: 0.18em;
+}
+
+.heading {
+   font-size: 88px;
+   font-weight: 400;
+   line-height: 1;
+   margin-top: 20px;
+}
+
+.accent {
+   color: var(--second-color);
+}
+
+/* STICKER WALL — three columns of different heights, like pinned notes */
+
+.wall {
    display: grid;
-   grid-template-columns: 1fr;
-   position: relative;
-   max-width: 800px;
-   margin: auto;
-   background-color: #9b111f67;
-   border-radius: 20px;
-   padding-bottom: 40px;
+   grid-template-columns: repeat(3, minmax(0, 1fr));
+   gap: 26px;
+   align-items: start;
+   margin-top: 44px;
 }
 
-.quote {
-   position: absolute;
-   top: 0;
-   left: 50%;
-   font-size: 40px;
-   transform: translateY(-15px) translateX(-50%);
-}
-
-.testimonialItem {
-   /*They all sit in the same spot */
-   grid-column: 1 / 1;
-   grid-row: 1 / 1;
-
-   padding: 40px;
+.column {
    display: flex;
    flex-direction: column;
-   justify-content: center;
+   gap: 26px;
+}
+
+/* Small vertical offsets so the columns don't line up too neatly */
+.column:nth-child(1) {
+   margin-top: 10px;
+}
+
+.column:nth-child(3) {
+   margin-top: 30px;
+}
+
+/* CARD */
+
+.card {
+   position: relative;
+   overflow: hidden;
+   padding: 26px 24px 22px;
+   border-radius: 22px;
+   box-shadow: 0 18px 30px -16px rgba(59, 10, 42, 0.45);
+   /* --tilt comes from the card's inline style (set per testimonial in JSX) */
+   transform: rotate(var(--tilt));
+   transition: transform 0.35s cubic-bezier(0.22, 0.68, 0, 1);
+}
+
+.card:hover {
+   transform: rotate(0deg) translateY(-4px);
+}
+
+.cream {
+   background: var(--second-color);
+   color: var(--bg-color);
+}
+
+.plum {
+   background: var(--bg-color);
+   color: var(--second-color);
+}
+
+/* The one-line review: a smaller sticker with bigger text */
+.short {
+   margin: 0 30px 0 10px;
+}
+
+.head {
+   display: flex;
    align-items: center;
-   text-align: center;
-
-   /* Transition for the fade effect */
-   transition:
-      opacity 0.8s ease-in-out,
-      transform 0.8s ease;
-   pointer-events: none; /* Prevents clicking invisible text */
-   opacity: 0;
+   gap: 10px;
+   margin-bottom: 14px;
 }
 
-.active {
-   opacity: 1;
-   pointer-events: auto;
-   transform: translateY(0);
+/* Oversized faded quote mark in the top-right corner */
+.mark {
+   position: absolute;
+   top: -26px;
+   right: 14px;
+   font-family: var(--font-display), 'Arial Narrow', sans-serif;
+   font-size: 130px;
+   line-height: 1;
+   opacity: 0.12;
+   pointer-events: none;
 }
 
-.inactive {
-   opacity: 0;
-   transform: translateY(10px);
+.avatar {
+   display: grid;
+   place-items: center;
+   flex: none;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+}
+
+.avatar svg {
+   width: 46%;
+   height: 46%;
+}
+
+.cream .avatar {
+   background: var(--bg-color);
+   fill: var(--main-color);
+}
+
+.plum .avatar {
+   background: var(--main-color);
+   fill: var(--bg-color);
+}
+
+.name {
+   font-family: var(--font-display), 'Arial Narrow', sans-serif;
+   font-size: 18px;
+   letter-spacing: 0.03em;
+   text-transform: uppercase;
 }
 
 .text {
+   position: relative;
+   font-size: 15px;
    font-style: italic;
+   line-height: 1.6;
 }
 
-.signature {
-   position: absolute;
-   bottom: 20px;
-   right: 20px;
+.plum .text {
+   color: #f5e8dc;
 }
 
-.clientName {
-   display: inline-block; /* Required for transforms to work */
-   font-family: var(--font-italianno);
-   font-size: 2rem;
-   letter-spacing: 1.5;
-
-   animation: signatureEntry 1s forwards;
+.short .text {
+   font-size: 17px;
 }
 
-@keyframes signatureEntry {
-   0% {
-      opacity: 0;
-      transform: translateX(15px);
-      filter: blur(10px);
-   }
-   100% {
-      opacity: 1;
-      transform: translateX(0);
-      filter: blur(0);
-   }
+.stars {
+   position: relative;
+   margin-top: 14px;
+   font-size: 13px;
+   letter-spacing: 3px;
+   color: var(--main-color);
 }
 
-.progressContainer {
-   position: absolute;
-   bottom: 1px;
-   left: 5%;
-   width: 90%;
-   height: 2px;
-   overflow: hidden;
-   z-index: 10;
-   border-radius: 20px;
-}
-
-.progressBar {
-   height: 100%;
-   background-color: var(--second-color);
-   width: 0%;
-   animation: fillProgress 7s linear forwards;
-}
-
-@keyframes fillProgress {
-   from {
-      width: 0%;
-   }
-   to {
-      width: 100%;
+@media (prefers-reduced-motion: reduce) {
+   .card {
+      transition: none;
    }
 }

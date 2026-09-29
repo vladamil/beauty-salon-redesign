@@ -1,5 +1,53 @@
 .contact {
-   display: flex;
-   flex-direction: column;
-   gap: 80px;
+   position: relative;
+   overflow: hidden;
+   background-color: var(--main-color);
+   color: var(--bg-color);
+   padding: 40px 0;
+}
+
+.inner {
+   position: relative;
+   z-index: 1;
+}
+
+.rings {
+   position: absolute;
+   top: -150px;
+   left: -130px;
+   width: 500px;
+   height: 500px;
+   fill: none;
+   stroke: var(--bg-color);
+   stroke-width: 1.5;
+   pointer-events: none;
+}
+
+.rings circle:first-child {
+   opacity: 0.14;
+}
+
+.rings circle:last-child {
+   opacity: 0.09;
+}
+
+.sparkle {
+   position: absolute;
+   pointer-events: none;
+}
+
+.sparkleBig {
+   top: 92px;
+   right: 110px;
+   width: 26px;
+   height: 26px;
+   fill: var(--bg-color);
+}
+
+.sparkleSmall {
+   top: 160px;
+   right: 170px;
+   width: 14px;
+   height: 14px;
+   fill: var(--second-color);
 }

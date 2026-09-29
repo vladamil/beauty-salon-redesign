@@ -1,0 +1,317 @@
+/* PLUM PANEL — copy + actions on the left, drawn map on the right */
+
+.booking {
+   display: grid;
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   gap: 60px;
+   margin-top: 90px;
+   padding: 60px 60px 60px 64px;
+   border-radius: 32px;
+   background: var(--bg-color);
+   color: var(--second-color);
+   box-shadow: 0 34px 60px -30px rgba(59, 10, 42, 0.7);
+}
+
+.kicker {
+   font-size: 12px;
+   font-weight: 700;
+   letter-spacing: 0.18em;
+   color: var(--main-color);
+}
+
+.heading {
+   font-size: 96px;
+   font-weight: 400;
+   line-height: 0.95;
+   margin: 12px 0 16px;
+}
+
+.accent {
+   color: var(--main-color);
+}
+
+.intro {
+   max-width: 380px;
+   margin-bottom: 30px;
+   font-size: 15.5px;
+   line-height: 1.6;
+   color: #e9d9de;
+}
+
+/* ACTION ROWS — each one is a big tappable link */
+
+.actions {
+   display: flex;
+   flex-direction: column;
+   gap: 14px;
+   max-width: 470px;
+   list-style: none;
+}
+
+.action {
+   display: grid;
+   grid-template-columns: 52px 1fr 40px;
+   align-items: center;
+   gap: 16px;
+   padding: 14px 16px 14px 14px;
+   border-radius: 20px;
+   color: var(--bg-color);
+   text-decoration: none;
+   box-shadow: 0 12px 22px -12px rgba(0, 0, 0, 0.5);
+   transition:
+      transform 0.3s cubic-bezier(0.22, 0.68, 0, 1),
+      box-shadow 0.3s ease;
+}
+
+/* Slight sticker tilt, alternating per row */
+.actions li:nth-child(1) .action {
+   transform: rotate(-1.2deg);
+}
+
+.actions li:nth-child(2) .action {
+   transform: rotate(0.8deg);
+}
+
+.actions li:nth-child(3) .action {
+   transform: rotate(-0.6deg);
+}
+
+.actions li .action:hover {
+   transform: rotate(0deg) translateX(6px);
+   box-shadow: 0 18px 28px -12px rgba(0, 0, 0, 0.6);
+}
+
+.action:focus-visible,
+.mapsBtn:focus-visible {
+   outline: 3px solid var(--main-color);
+   outline-offset: 3px;
+}
+
+.cream {
+   background: var(--second-color);
+}
+
+.pink {
+   background: var(--main-color);
+}
+
+.icon {
+   display: grid;
+   place-items: center;
+   width: 52px;
+   height: 52px;
+   border-radius: 50%;
+   background: var(--bg-color);
+   color: var(--main-color);
+   font-size: 22px;
+}
+
+.label {
+   display: block;
+   font-size: 11px;
+   font-weight: 700;
+   letter-spacing: 0.14em;
+   opacity: 0.72;
+}
+
+.value {
+   display: block;
+   margin-top: 2px;
+   font-size: 19px;
+   font-weight: 700;
+}
+
+.arrow {
+   display: grid;
+   place-items: center;
+   width: 40px;
+   height: 40px;
+   border: 1.5px solid rgba(59, 10, 42, 0.3);
+   border-radius: 50%;
+   font-size: 18px;
+}
+
+/* DRAWN MAP */
+
+.mapWrap {
+   position: relative;
+}
+
+.map {
+   position: relative;
+   height: 100%;
+   min-height: 470px;
+   overflow: hidden;
+   border-radius: 24px;
+   background: #f4ddd3;
+   transform: rotate(1deg);
+}
+
+.mapArt {
+   position: absolute;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+}
+
+.park {
+   fill: #f5c6cf;
+}
+
+.streets {
+   fill: none;
+   stroke: var(--second-color);
+}
+
+.blocks {
+   fill: var(--bg-color);
+   opacity: 0.07;
+}
+
+.streetName {
+   font-size: 11px;
+   font-weight: 700;
+   letter-spacing: 3px;
+   fill: var(--bg-color);
+   opacity: 0.45;
+}
+
+.pin {
+   fill: var(--main-color);
+   stroke: var(--bg-color);
+   stroke-width: 3;
+}
+
+.pinDot {
+   fill: var(--bg-color);
+}
+
+/* A ring that grows and fades out under the pin, on repeat */
+.pulse {
+   fill: var(--main-color);
+   transform-box: fill-box;
+   transform-origin: center;
+   animation: pinPulse 2.2s ease-out infinite;
+}
+
+@keyframes pinPulse {
+   from {
+      transform: scale(0.6);
+      opacity: 0.7;
+   }
+   to {
+      transform: scale(2.2);
+      opacity: 0;
+   }
+}
+
+.mapFooter {
+   position: absolute;
+   left: 22px;
+   right: 22px;
+   bottom: 22px;
+   display: flex;
+   align-items: flex-end;
+   justify-content: space-between;
+   gap: 14px;
+}
+
+.address {
+   padding: 14px 18px;
+   border-radius: 18px;
+   background: var(--bg-color);
+   font-style: normal;
+   transform: rotate(-2deg);
+   box-shadow: 0 12px 22px -10px rgba(0, 0, 0, 0.5);
+}
+
+.address .label {
+   color: var(--main-color);
+   opacity: 1;
+}
+
+.street {
+   display: block;
+   margin-top: 3px;
+   font-size: 17px;
+   font-weight: 700;
+}
+
+.city {
+   display: block;
+   font-size: 13px;
+   color: #e9d9de;
+}
+
+.mapsBtn {
+   flex: none;
+   padding: 15px 22px;
+   border-radius: 999px;
+   background: var(--main-color);
+   color: var(--bg-color);
+   font-size: 13px;
+   font-weight: 700;
+   letter-spacing: 0.06em;
+   text-decoration: none;
+   transform: rotate(2deg);
+   box-shadow: 0 12px 22px -10px rgba(0, 0, 0, 0.45);
+   transition:
+      transform 0.3s cubic-bezier(0.22, 0.68, 0, 1),
+      box-shadow 0.3s ease;
+}
+
+.mapsBtn:hover {
+   transform: rotate(0deg) translateY(-3px);
+   box-shadow: 0 16px 24px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* STUDIO POLAROID taped over the map's corner */
+
+.polaroid {
+   position: absolute;
+   top: -34px;
+   right: -18px;
+   width: 170px;
+   padding: 10px 10px 0;
+   background: var(--second-color);
+   transform: rotate(7deg);
+   box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.55);
+}
+
+.tape {
+   position: absolute;
+   top: -12px;
+   left: 50%;
+   width: 80px;
+   height: 24px;
+   margin-left: -40px;
+   background: rgba(232, 99, 122, 0.8);
+   transform: rotate(-4deg);
+}
+
+.polaroidPhoto {
+   position: relative;
+   height: 140px;
+}
+
+.polaroidImg {
+   object-fit: cover;
+}
+
+.polaroidCaption {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 34px;
+   font-size: 10.5px;
+   font-weight: 700;
+   letter-spacing: 0.14em;
+   color: var(--bg-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .pulse {
+      animation: none;
+      opacity: 0;
+   }
+}

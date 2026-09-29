@@ -74,6 +74,17 @@ export default function MobileNavbar({ open, onClose, scrollToSection }) {
                      <button
                         className={styles.navItem}
                         onClick={() => {
+                           scrollToSection('galerija');
+                           onClose();
+                        }}
+                     >
+                        Galerija
+                     </button>
+                  </li>
+                  <li>
+                     <button
+                        className={styles.navItem}
+                        onClick={() => {
                            scrollToSection('kontakt');
                            onClose();
                         }}

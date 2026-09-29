@@ -85,6 +85,14 @@ export default function Navbar() {
                   <li>
                      <button
                         className={styles.navItem}
+                        onClick={() => scrollToSection('galerija')}
+                     >
+                        Galerija
+                     </button>
+                  </li>
+                  <li>
+                     <button
+                        className={styles.navItem}
                         onClick={() => scrollToSection('kontakt')}
                      >
                         Kontakt

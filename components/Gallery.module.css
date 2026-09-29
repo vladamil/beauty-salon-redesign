@@ -46,11 +46,33 @@
    height: 24px;
 }
 
+/* LAYOUT — one grid; each breakpoint only rearranges the named areas.
+   Desktop: header on top, then nails | spinning badge | lashes */
+
+.layout {
+   position: relative;
+   z-index: 1;
+   display: grid;
+   grid-template-columns: 1fr 240px 1fr;
+   grid-template-areas:
+      'header header header'
+      'nails badge lashes';
+   align-items: center;
+   row-gap: 44px;
+}
+
+.nailsDeck {
+   grid-area: nails;
+}
+
+.lashesDeck {
+   grid-area: lashes;
+}
+
 /* HEADER */
 
 .header {
-   position: relative;
-   z-index: 1;
+   grid-area: header;
    display: flex;
    align-items: flex-end;
    justify-content: space-between;
@@ -85,16 +107,15 @@
    text-align: right;
 }
 
-/* DECKS: nails | spinning badge | lashes */
+/* PHONE-ONLY PIECES — hidden until the phone media query shows them */
 
-.decks {
-   position: relative;
-   z-index: 1;
-   display: grid;
-   grid-template-columns: 1fr 240px 1fr;
-   align-items: center;
-   margin-top: 44px;
+.switch,
+.swipeHint,
+.counter {
+   display: none;
 }
+
+/* DECKS */
 
 .deck {
    display: flex;
@@ -343,7 +364,9 @@
 /* SPINNING BADGE */
 
 .spinBadge {
+   grid-area: badge;
    position: relative;
+   z-index: 2;
    display: grid;
    place-items: center;
    justify-self: center;
@@ -352,6 +375,8 @@
    border-radius: 50%;
    background: var(--second-color);
    box-shadow: 0 16px 30px -12px rgba(0, 0, 0, 0.5);
+   /* Decoration only — never block clicks or swipes on the cards below */
+   pointer-events: none;
 }
 
 .spinText {
@@ -400,4 +425,387 @@
    overflow: hidden;
    clip: rect(0 0 0 0);
    white-space: nowrap;
+}
+
+/* TABLET: decks stay side by side but smaller; the spinning badge moves up
+   into the header's right corner */
+@media (min-width: 768px) and (max-width: 1099px) {
+   .rings {
+      top: -120px;
+      right: -120px;
+      width: 380px;
+      height: 380px;
+   }
+
+   .sparkleLeft {
+      top: 520px;
+      left: calc(50% - 9px);
+   }
+
+   .sparkleRight {
+      display: none;
+   }
+
+   .layout {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-areas:
+         'header header header badge'
+         'nails nails lashes lashes';
+      column-gap: 36px;
+      row-gap: 40px;
+   }
+
+   .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+   }
+
+   .kicker {
+      font-size: 11.5px;
+   }
+
+   .heading {
+      font-size: 72px;
+      margin-top: 8px;
+   }
+
+   .intro {
+      max-width: 420px;
+      margin-bottom: 0;
+      font-size: 14.5px;
+      line-height: 1.55;
+      text-align: left;
+   }
+
+   .spinBadge {
+      justify-self: end;
+      align-self: start;
+      width: 118px;
+      height: 118px;
+      transform: rotate(-8deg);
+   }
+
+   .spinSparkle {
+      width: 26px;
+      height: 26px;
+   }
+
+   .deckTitle {
+      gap: 10px;
+   }
+
+   .deckTitle h3 {
+      font-size: 28px;
+   }
+
+   .badge {
+      width: 40px;
+      height: 40px;
+      font-size: 15px;
+   }
+
+   .stack {
+      width: 310px;
+      height: 420px;
+   }
+
+   .card {
+      top: 30px;
+      width: 280px;
+      padding: 12px 12px 0;
+   }
+
+   .photo {
+      height: 300px;
+   }
+
+   .caption {
+      height: 44px;
+      font-size: 11px;
+   }
+
+   .under3 {
+      transform: translate(-18px, 12px) rotate(-10deg);
+   }
+
+   .under2 {
+      transform: translate(16px, 5px) rotate(7deg);
+   }
+
+   .mirrored .under3 {
+      transform: translate(18px, 12px) rotate(10deg);
+   }
+
+   .mirrored .under2 {
+      transform: translate(-16px, 5px) rotate(-7deg);
+   }
+
+   .top {
+      --deal-x: 60px;
+   }
+
+   .mirrored .top {
+      --deal-x: -60px;
+   }
+
+   .controls {
+      gap: 10px;
+      margin-top: 8px;
+   }
+
+   .prev {
+      width: 48px;
+      height: 48px;
+   }
+
+   .arrow {
+      width: 18px;
+      height: 18px;
+   }
+
+   .next {
+      padding: 15px 22px;
+   }
+}
+
+/* PHONE: one deck at a time behind a NOKTIĆI / TREPAVICE switch,
+   plus a swipe hint and a counter between the buttons */
+@media (max-width: 767px) {
+   .gallery {
+      padding: 20px 0;
+   }
+
+   .rings {
+      top: -70px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      stroke-width: 3;
+   }
+
+   .sparkle {
+      display: none;
+   }
+
+   .layout {
+      grid-template-columns: minmax(0, 340px);
+      grid-template-areas:
+         'header'
+         'switch'
+         'deck';
+      justify-content: center;
+      align-items: start;
+      row-gap: 0;
+   }
+
+   /* Both decks and the badge share one cell; the switch hides the other deck */
+   .nailsDeck,
+   .lashesDeck,
+   .spinBadge {
+      grid-area: deck;
+   }
+
+   .phoneHidden {
+      display: none;
+   }
+
+   .header {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+   }
+
+   .kicker {
+      font-size: 10.5px;
+   }
+
+   .heading {
+      font-size: 52px;
+      margin-top: 8px;
+   }
+
+   .intro {
+      max-width: 300px;
+      margin-bottom: 0;
+      font-size: 13.5px;
+      line-height: 1.5;
+      text-align: center;
+   }
+
+   /* NOKTIĆI / TREPAVICE switch — aria-pressed drives the active look */
+   .switch {
+      grid-area: switch;
+      display: flex;
+      gap: 6px;
+      margin: 24px 0 18px;
+      padding: 5px;
+      border: 1px solid rgba(255, 246, 236, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 246, 236, 0.08);
+   }
+
+   .switchBtn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--second-color);
+      font: inherit;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition:
+         background 0.25s ease,
+         color 0.25s ease;
+   }
+
+   .switchBtn[aria-pressed='true'] {
+      background: var(--main-color);
+      color: var(--bg-color);
+   }
+
+   .switchBtn:focus-visible {
+      outline: 3px solid var(--second-color);
+      outline-offset: 2px;
+   }
+
+   .switchNum {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(255, 246, 236, 0.14);
+      font-size: 11px;
+   }
+
+   .switchBtn[aria-pressed='true'] .switchNum {
+      background: var(--bg-color);
+      color: var(--main-color);
+   }
+
+   /* The switch already names the deck, so its title row goes */
+   .deckTitle {
+      display: none;
+   }
+
+   /* Badge overlaps the deck's top-left corner (top-right has the zoom icon) */
+   .spinBadge {
+      justify-self: start;
+      align-self: start;
+      width: 84px;
+      height: 84px;
+      margin: -6px 0 0 8px;
+   }
+
+   .spinSparkle {
+      width: 22px;
+      height: 22px;
+   }
+
+   .stack {
+      width: 300px;
+      height: 390px;
+   }
+
+   .card {
+      left: 19px;
+      top: 30px;
+      width: 262px;
+      padding: 11px 11px 0;
+   }
+
+   .photo {
+      height: 280px;
+   }
+
+   .caption {
+      height: 42px;
+      font-size: 10.5px;
+   }
+
+   .under3 {
+      transform: translate(-14px, 10px) rotate(-8deg);
+   }
+
+   .under2 {
+      transform: translate(13px, 4px) rotate(6deg);
+   }
+
+   .under1 {
+      transform: rotate(-3deg);
+   }
+
+   .mirrored .under3 {
+      transform: translate(14px, 10px) rotate(8deg);
+   }
+
+   .mirrored .under2 {
+      transform: translate(-13px, 4px) rotate(-6deg);
+   }
+
+   .mirrored .under1 {
+      transform: rotate(3deg);
+   }
+
+   .top {
+      --deal-x: 50px;
+   }
+
+   .mirrored .top {
+      --deal-x: -50px;
+   }
+
+   .swipeHint {
+      display: block;
+      margin-top: 4px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: #c98a9b;
+   }
+
+   .controls {
+      justify-content: space-between;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 16px;
+      padding: 0 6px;
+   }
+
+   .counter {
+      display: block;
+      font-family: var(--font-display), 'Arial Narrow', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.02em;
+   }
+
+   .counterTotal {
+      font-size: 18px;
+      color: #c98a9b;
+   }
+
+   .prev {
+      width: 46px;
+      height: 46px;
+   }
+
+   .arrow {
+      width: 18px;
+      height: 18px;
+   }
+
+   .next {
+      padding: 14px 20px;
+      font-size: 12.5px;
+   }
 }

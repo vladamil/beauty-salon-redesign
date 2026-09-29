@@ -14,15 +14,20 @@ const SWIPE_THRESHOLD = 40;
 
 const pad = (n) => String(n).padStart(2, '0');
 
-function Arrow({ flip }) {
+// Next's <Image> picks the file size from this: card photo width per breakpoint.
+const CARD_SIZES = '(max-width: 767px) 240px, (max-width: 1099px) 256px, 302px';
+
+function Arrow() {
    return (
       <svg viewBox="0 0 24 24" className={styles.arrow} aria-hidden="true">
-         <path d={flip ? 'M9 5l7 7-7 7' : 'M15 5l-7 7 7 7'} />
+         <path d="M15 5l-7 7 7 7" />
       </svg>
    );
 }
 
-function Deck({ number, title, label, photos, mirrored, onOpen }) {
+// ---- REUSABLE DECK COMPONENT ----
+
+function Deck({ number, title, label, photos, mirrored, className, onOpen }) {
    const [index, setIndex] = useState(0);
    // Only animate the top card after the first interaction, not on page load.
    const [dealt, setDealt] = useState(false);
@@ -61,7 +66,9 @@ function Deck({ number, title, label, photos, mirrored, onOpen }) {
    };
 
    return (
-      <div className={`${styles.deck} ${mirrored ? styles.mirrored : ''}`}>
+      <div
+         className={`${styles.deck} ${mirrored ? styles.mirrored : ''} ${className}`}
+      >
          <div className={styles.deckTitle}>
             <span className={styles.badge}>{number}</span>
             <h3>{title}</h3>
@@ -84,7 +91,7 @@ function Deck({ number, title, label, photos, mirrored, onOpen }) {
                         src={at(offset)}
                         alt=""
                         fill
-                        sizes="302px"
+                        sizes={CARD_SIZES}
                         className={styles.photoImg}
                         draggable={false}
                      />
@@ -105,7 +112,7 @@ function Deck({ number, title, label, photos, mirrored, onOpen }) {
                      src={at(0)}
                      alt=""
                      fill
-                     sizes="302px"
+                     sizes={CARD_SIZES}
                      className={styles.photoImg}
                      draggable={false}
                   />
@@ -122,6 +129,11 @@ function Deck({ number, title, label, photos, mirrored, onOpen }) {
             </button>
          </div>
 
+         {/* Phone only: touch users need a hint that the deck can be swiped */}
+         <p className={styles.swipeHint} aria-hidden="true">
+            ← PREVUCI →
+         </p>
+
          <div className={styles.controls}>
             <button
                type="button"
@@ -131,6 +143,11 @@ function Deck({ number, title, label, photos, mirrored, onOpen }) {
             >
                <Arrow />
             </button>
+            {/* Phone only: the counter sits between the buttons */}
+            <span className={styles.counter} aria-hidden="true">
+               {pad(index + 1)}
+               <span className={styles.counterTotal}> / {pad(count)}</span>
+            </span>
             <button
                type="button"
                className={styles.next}
@@ -148,11 +165,14 @@ function Deck({ number, title, label, photos, mirrored, onOpen }) {
    );
 }
 
+// ----- GALLERY -----
 export default function Gallery({ nails, lashes }) {
    // Each deck opens the lightbox with only its own photos.
    const [open, setOpen] = useState(false);
    const [photos, setPhotos] = useState([]);
    const [index, setIndex] = useState(0);
+   // Phone only: which deck the NOKTIĆI / TREPAVICE switch is showing.
+   const [activeDeck, setActiveDeck] = useState('nails');
 
    const openDeck = (deckPhotos) => (i) => {
       setPhotos(deckPhotos);
@@ -182,25 +202,52 @@ export default function Gallery({ nails, lashes }) {
          </svg>
 
          <div className="container">
-            <div className={styles.header}>
-               <div>
-                  <span className={styles.kicker}>GALERIJA</span>
-                  <h2 className={styles.heading}>
-                     NAŠI RADOVI<span className={styles.accent}>.</span>
-                  </h2>
+            {/* One grid for everything, so the badge and decks can move per breakpoint */}
+            <div className={styles.layout}>
+               <div className={styles.header}>
+                  <div>
+                     <span className={styles.kicker}>GALERIJA</span>
+                     <h2 className={styles.heading}>
+                        MOJI RADOVI<span className={styles.accent}>.</span>
+                     </h2>
+                  </div>
+                  <p className={styles.intro}>
+                     Dva špila, dve kolekcije. Listajte — klik na fotografiju je
+                     otvara preko celog ekrana.
+                  </p>
                </div>
-               <p className={styles.intro}>
-                  Dva špila, dve kolekcije. Listajte — klik na fotografiju je
-                  otvara preko celog ekrana.
-               </p>
-            </div>
 
-            <div className={styles.decks}>
+               <div
+                  className={styles.switch}
+                  role="group"
+                  aria-label="Izaberite kolekciju"
+               >
+                  <button
+                     type="button"
+                     className={styles.switchBtn}
+                     aria-pressed={activeDeck === 'nails'}
+                     onClick={() => setActiveDeck('nails')}
+                  >
+                     <span className={styles.switchNum}>01</span>
+                     NOKTIĆI
+                  </button>
+                  <button
+                     type="button"
+                     className={styles.switchBtn}
+                     aria-pressed={activeDeck === 'lashes'}
+                     onClick={() => setActiveDeck('lashes')}
+                  >
+                     <span className={styles.switchNum}>02</span>
+                     TREPAVICE
+                  </button>
+               </div>
+
                <Deck
                   number="01"
                   title="NOKTIĆI"
                   label="Nokti"
                   photos={nails}
+                  className={`${styles.nailsDeck} ${activeDeck === 'nails' ? '' : styles.phoneHidden}`}
                   onOpen={openDeck(nails)}
                />
 
@@ -218,7 +265,7 @@ export default function Gallery({ nails, lashes }) {
                            textLength="386"
                            lengthAdjust="spacing"
                         >
-                           BELLCA ✦ NAŠI RADOVI ✦ BELLCA ✦ NAŠI RADOVI ✦
+                           BELLCA ✦ MOJI RADOVI ✦ BELLCA ✦ MOJI RADOVI ✦
                         </textPath>
                      </text>
                   </svg>
@@ -232,6 +279,7 @@ export default function Gallery({ nails, lashes }) {
                   title="TREPAVICE"
                   label="Trepavice"
                   photos={lashes}
+                  className={`${styles.lashesDeck} ${activeDeck === 'lashes' ? '' : styles.phoneHidden}`}
                   onOpen={openDeck(lashes)}
                   mirrored
                />

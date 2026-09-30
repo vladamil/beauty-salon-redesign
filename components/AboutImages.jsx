@@ -17,7 +17,7 @@ export default function AboutImages() {
                   src="/about/about6.jpg"
                   alt="Radno mesto u Bellca studiju"
                   fill
-                  sizes="336px"
+                  sizes="(max-width: 767px) 60vw, (max-width: 1099px) 204px, 336px"
                   className={styles.photo}
                />
             </div>
@@ -30,7 +30,7 @@ export default function AboutImages() {
                   src={PORTRAIT.src}
                   alt={PORTRAIT.alt}
                   fill
-                  sizes="276px"
+                  sizes="(max-width: 767px) 52vw, (max-width: 1099px) 174px, 276px"
                   className={styles.photo}
                />
             </div>

@@ -36,19 +36,34 @@
    pointer-events: none;
 }
 
-/* Desktop: photos on the left, heading + note + stamps on the right */
+/* Desktop: photos on the left; heading + note + stamps on the right,
+   vertically centered by the two empty 1fr rows around them */
 .inner {
    position: relative;
    z-index: 1;
    display: grid;
    grid-template-columns: 540px minmax(0, 1fr);
-   align-items: center;
-   gap: 80px;
+   grid-template-rows: 1fr auto auto 1fr;
+   grid-template-areas:
+      'visual .'
+      'visual header'
+      'visual body'
+      'visual .';
+   column-gap: 80px;
+}
+
+.header {
+   grid-area: header;
+}
+
+.body {
+   grid-area: body;
 }
 
 /* PHOTOS — two taped polaroids with an empty "caption" strip */
 
 .visual {
+   grid-area: visual;
    position: relative;
    height: 620px;
 }
@@ -218,5 +233,247 @@
 @media (prefers-reduced-motion: reduce) {
    .photo {
       transition: none;
+   }
+}
+
+/* TABLET: heading across the top; photos left, note + stamps right */
+@media (min-width: 768px) and (max-width: 1099px) {
+   .rings {
+      top: -120px;
+      right: -120px;
+      width: 380px;
+      height: 380px;
+   }
+
+   .floatingSparkle {
+      top: 60px;
+      left: auto;
+      right: 60px;
+   }
+
+   .inner {
+      grid-template-columns: 300px minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      grid-template-areas:
+         'header header'
+         'visual body';
+      align-items: center;
+      column-gap: 40px;
+      row-gap: 32px;
+   }
+
+   .kicker {
+      font-size: 11.5px;
+   }
+
+   .heading {
+      font-size: 64px;
+      margin: 12px 0 0;
+   }
+
+   .visual {
+      height: 440px;
+   }
+
+   .polaroid {
+      padding: 9px 9px 32px;
+   }
+
+   .studioShot {
+      width: 222px;
+   }
+
+   .studioShot .polaroidPhoto {
+      height: 185px;
+   }
+
+   .portrait {
+      left: 0;
+      width: 192px;
+   }
+
+   .portrait .polaroidPhoto {
+      height: 215px;
+   }
+
+   .tape {
+      top: -10px;
+      width: 72px;
+      height: 20px;
+      margin-left: -36px;
+   }
+
+   .note {
+      padding: 26px 28px 24px;
+      background-image: repeating-linear-gradient(
+         0deg,
+         transparent 0 29px,
+         rgba(59, 10, 42, 0.07) 29px 30px
+      );
+      background-position: 0 22px;
+   }
+
+   .noteText {
+      font-size: 18px;
+      line-height: 30px;
+   }
+
+   .signature {
+      gap: 10px;
+      margin-top: 18px;
+   }
+
+   .signatureSparkle {
+      width: 18px;
+      height: 18px;
+   }
+
+   .signatureName {
+      font-size: 24px;
+   }
+
+   .signatureRole {
+      font-size: 13px;
+   }
+
+   .stamps {
+      margin-top: 26px;
+   }
+
+   .stamp {
+      width: 88px;
+      height: 88px;
+      border-width: 5px;
+   }
+
+   .stamp + .stamp {
+      margin-left: -14px;
+   }
+}
+
+/* PHONE: everything stacked and centered; the photos are sized in %,
+   so they shrink with the screen instead of overflowing it */
+@media (max-width: 767px) {
+   .about {
+      padding: 20px 0;
+   }
+
+   .rings {
+      top: -70px;
+      right: -80px;
+      width: 240px;
+      height: 240px;
+      stroke-width: 3;
+   }
+
+   .floatingSparkle {
+      display: none;
+   }
+
+   .inner {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas:
+         'header'
+         'visual'
+         'body';
+      row-gap: 30px;
+   }
+
+   .header {
+      text-align: center;
+   }
+
+   .kicker {
+      font-size: 10.5px;
+   }
+
+   .heading {
+      /* 14vw keeps "NE KVANTITET." on one line down to 320px screens */
+      font-size: clamp(44px, 14vw, 56px);
+      margin: 12px 0 0;
+   }
+
+   .visual {
+      height: 340px;
+   }
+
+   .polaroid {
+      padding: 8px 8px 26px;
+   }
+
+   .studioShot {
+      right: 2%;
+      width: 60%;
+   }
+
+   .studioShot .polaroidPhoto {
+      height: 170px;
+   }
+
+   .portrait {
+      left: 2%;
+      width: 52%;
+   }
+
+   .portrait .polaroidPhoto {
+      height: 200px;
+   }
+
+   .tape {
+      top: -10px;
+      width: 70px;
+      height: 20px;
+      margin-left: -35px;
+   }
+
+   .note {
+      padding: 24px 22px 22px;
+      background-image: repeating-linear-gradient(
+         0deg,
+         transparent 0 28px,
+         rgba(59, 10, 42, 0.07) 28px 29px
+      );
+      background-position: 0 20px;
+   }
+
+   .noteText {
+      font-size: 17px;
+      line-height: 29px;
+   }
+
+   .signature {
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      margin-top: 16px;
+   }
+
+   .signatureSparkle {
+      width: 18px;
+      height: 18px;
+   }
+
+   .signatureName {
+      font-size: 22px;
+   }
+
+   .signatureRole {
+      font-size: 12.5px;
+   }
+
+   .stamps {
+      justify-content: center;
+      margin-top: 28px;
+      padding-left: 0;
+   }
+
+   .stamp {
+      width: 88px;
+      height: 88px;
+      border-width: 5px;
+   }
+
+   .stamp + .stamp {
+      margin-left: -14px;
    }
 }

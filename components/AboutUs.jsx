@@ -30,10 +30,11 @@ export default function AboutUs() {
          <Sparkle className={styles.floatingSparkle} />
 
          <div className="container">
+            {/* Three grid areas (header, visual, body) that each breakpoint rearranges */}
             <div className={styles.inner}>
                <AboutImages />
 
-               <div className={styles.text}>
+               <div className={styles.header}>
                   <span className={styles.kicker}>
                      <Sparkle className={styles.kickerSparkle} />O NAMA
                   </span>
@@ -42,7 +43,9 @@ export default function AboutUs() {
                      <br />
                      NE KVANTITET<span className={styles.accent}>.</span>
                   </h2>
+               </div>
 
+               <div className={styles.body}>
                   {/* Branči's own words, as a note on lined paper */}
                   <figure className={styles.note}>
                      <blockquote className={styles.noteText}>
@@ -69,7 +72,7 @@ export default function AboutUs() {
                               src={src}
                               alt={alt}
                               fill
-                              sizes="112px"
+                              sizes="(max-width: 1099px) 88px, 112px"
                               className={styles.photo}
                            />
                         </li>

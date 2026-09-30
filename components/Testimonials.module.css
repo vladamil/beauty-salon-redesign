@@ -17,29 +17,18 @@
    color: var(--second-color);
 }
 
-/* STICKER WALL — three columns of different heights, like pinned notes */
+/* STICKER WALL — each card has a grid-area name (set in JSX);
+   desktop: Milica fills the first column, the others pair up beside her */
 
 .wall {
    display: grid;
    grid-template-columns: repeat(3, minmax(0, 1fr));
+   grid-template-areas:
+      'milica tatjana lana'
+      'milica sanja   sladjana';
    gap: 26px;
    align-items: start;
    margin-top: 44px;
-}
-
-.column {
-   display: flex;
-   flex-direction: column;
-   gap: 26px;
-}
-
-/* Small vertical offsets so the columns don't line up too neatly */
-.column:nth-child(1) {
-   margin-top: 10px;
-}
-
-.column:nth-child(3) {
-   margin-top: 30px;
 }
 
 /* CARD */
@@ -150,5 +139,152 @@
 @media (prefers-reduced-motion: reduce) {
    .card {
       transition: none;
+   }
+}
+
+/* TABLET: two columns, Sanja's one-liner closes the wall underneath */
+@media (min-width: 768px) and (max-width: 1099px) {
+   .kicker {
+      font-size: 11.5px;
+   }
+
+   .heading {
+      font-size: 60px;
+      margin-top: 14px;
+   }
+
+   .wall {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+         'milica   tatjana'
+         'sladjana lana'
+         'sanja    sanja';
+      gap: 22px;
+      /* Shorter cards sit centered beside taller ones, like staggered stickers */
+      align-items: center;
+      margin-top: 36px;
+   }
+
+   .card {
+      padding: 24px 22px 20px;
+   }
+
+   .short {
+      justify-self: center;
+      width: min(380px, 100%);
+      margin: -6px 0 0;
+   }
+
+   .mark {
+      top: -22px;
+      right: 12px;
+      font-size: 110px;
+   }
+
+   .avatar {
+      width: 38px;
+      height: 38px;
+   }
+
+   .head {
+      margin-bottom: 12px;
+   }
+
+   .name {
+      font-size: 17px;
+   }
+
+   .text {
+      font-size: 14.5px;
+      line-height: 1.55;
+   }
+
+   .stars {
+      margin-top: 12px;
+      font-size: 12.5px;
+   }
+}
+
+/* PHONE: zigzag stack — cards alternate left/right and overlap slightly.
+   It's a flex column now, so the grid-area names are simply ignored. */
+@media (max-width: 767px) {
+   .testimonials {
+      text-align: center;
+   }
+
+   .kicker {
+      font-size: 10.5px;
+   }
+
+   .heading {
+      font-size: 44px;
+      margin-top: 12px;
+   }
+
+   .wall {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 26px;
+      text-align: left;
+   }
+
+   .card {
+      width: 85%;
+      padding: 22px 20px 18px;
+      border-radius: 20px;
+   }
+
+   .card:nth-child(odd) {
+      align-self: flex-start;
+   }
+
+   .card:nth-child(even) {
+      align-self: flex-end;
+   }
+
+   /* Every card after the first tucks 12px under the one above */
+   .card + .card {
+      margin-top: -12px;
+   }
+
+   .short {
+      width: 72%;
+      margin-right: 0;
+      margin-left: 18px;
+   }
+
+   .short .text {
+      font-size: 16px;
+   }
+
+   .mark {
+      top: -20px;
+      right: 12px;
+      font-size: 100px;
+   }
+
+   .avatar {
+      width: 36px;
+      height: 36px;
+   }
+
+   .head {
+      gap: 9px;
+      margin-bottom: 12px;
+   }
+
+   .name {
+      font-size: 16px;
+   }
+
+   .text {
+      font-size: 14px;
+      line-height: 1.55;
+   }
+
+   .stars {
+      margin-top: 12px;
+      font-size: 12px;
    }
 }

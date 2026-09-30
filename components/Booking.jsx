@@ -77,8 +77,9 @@ function MapIllustration() {
 export default function Booking() {
    return (
       // #kontakt lives here, so "Zakažite termin" and the nav land on the booking options
+      // Three grid areas (copy, actions, map) that each breakpoint rearranges
       <div id="kontakt" className={styles.booking}>
-         <div>
+         <div className={styles.copy}>
             <span className={styles.kicker}>KONTAKT</span>
             <h2 className={styles.heading}>
                ZAKAŽI
@@ -86,51 +87,51 @@ export default function Booking() {
                TERMIN<span className={styles.accent}>.</span>
             </h2>
             <p className={styles.intro}>Pošaljite poruku ili svratite u studio.</p>
-
-            <ul className={styles.actions}>
-               {actions.map(({ label, value, href, Icon, variant, external }) => (
-                  <li key={label}>
-                     <a
-                        href={href}
-                        className={`${styles.action} ${styles[variant]}`}
-                        target={external ? '_blank' : undefined}
-                        rel={external ? 'noopener noreferrer' : undefined}
-                     >
-                        <span className={styles.icon} aria-hidden="true">
-                           <Icon />
-                        </span>
-                        <span>
-                           <span className={styles.label}>{label}</span>
-                           <span className={styles.value}>{value}</span>
-                        </span>
-                        <span className={styles.arrow} aria-hidden="true">
-                           <FiArrowRight />
-                        </span>
-                     </a>
-                  </li>
-               ))}
-            </ul>
          </div>
+
+         <ul className={styles.actions}>
+            {actions.map(({ label, value, href, Icon, variant, external }) => (
+               <li key={label}>
+                  <a
+                     href={href}
+                     className={`${styles.action} ${styles[variant]}`}
+                     target={external ? '_blank' : undefined}
+                     rel={external ? 'noopener noreferrer' : undefined}
+                  >
+                     <span className={styles.icon} aria-hidden="true">
+                        <Icon />
+                     </span>
+                     <span>
+                        <span className={styles.label}>{label}</span>
+                        <span className={styles.value}>{value}</span>
+                     </span>
+                     <span className={styles.arrow} aria-hidden="true">
+                        <FiArrowRight />
+                     </span>
+                  </a>
+               </li>
+            ))}
+         </ul>
 
          <div className={styles.mapWrap}>
             <div className={styles.map}>
                <MapIllustration />
-               <div className={styles.mapFooter}>
-                  <address className={styles.address}>
-                     <span className={styles.label}>POSETITE NAS</span>
-                     <span className={styles.street}>Janka Čmelika 27</span>
-                     <span className={styles.city}>Detelinara, Novi Sad</span>
-                  </address>
-                  <a
-                     href={MAPS_URL}
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className={styles.mapsBtn}
-                  >
-                     OTVORI U MAPS →
-                  </a>
-               </div>
+               <address className={styles.address}>
+                  <span className={styles.label}>POSETITE NAS</span>
+                  <span className={styles.street}>Janka Čmelika 27</span>
+                  <span className={styles.city}>Detelinara, Novi Sad</span>
+               </address>
             </div>
+
+            {/* Outside the map so it can drop below it as a full-width pill on phones */}
+            <a
+               href={MAPS_URL}
+               target="_blank"
+               rel="noopener noreferrer"
+               className={styles.mapsBtn}
+            >
+               OTVORI U MAPS →
+            </a>
 
             <div className={styles.polaroid}>
                <span className={styles.tape} aria-hidden="true" />

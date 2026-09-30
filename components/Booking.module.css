@@ -1,15 +1,23 @@
-/* PLUM PANEL — copy + actions on the left, drawn map on the right */
+/* PLUM PANEL — desktop: copy + actions on the left, drawn map on the right */
 
 .booking {
    display: grid;
    grid-template-columns: repeat(2, minmax(0, 1fr));
-   gap: 60px;
+   grid-template-rows: auto 1fr;
+   grid-template-areas:
+      'copy    map'
+      'actions map';
+   column-gap: 60px;
    margin-top: 90px;
    padding: 60px 60px 60px 64px;
    border-radius: 32px;
    background: var(--bg-color);
    color: var(--second-color);
    box-shadow: 0 34px 60px -30px rgba(59, 10, 42, 0.7);
+}
+
+.copy {
+   grid-area: copy;
 }
 
 .kicker {
@@ -41,6 +49,8 @@
 /* ACTION ROWS — each one is a big tappable link */
 
 .actions {
+   grid-area: actions;
+   align-self: start;
    display: flex;
    flex-direction: column;
    gap: 14px;
@@ -134,6 +144,7 @@
 /* DRAWN MAP */
 
 .mapWrap {
+   grid-area: map;
    position: relative;
 }
 
@@ -205,18 +216,10 @@
    }
 }
 
-.mapFooter {
+.address {
    position: absolute;
    left: 22px;
-   right: 22px;
    bottom: 22px;
-   display: flex;
-   align-items: flex-end;
-   justify-content: space-between;
-   gap: 14px;
-}
-
-.address {
    padding: 14px 18px;
    border-radius: 18px;
    background: var(--bg-color);
@@ -243,8 +246,11 @@
    color: #e9d9de;
 }
 
+/* Sits over the map's bottom-right corner (positioned on .mapWrap) */
 .mapsBtn {
-   flex: none;
+   position: absolute;
+   right: 22px;
+   bottom: 22px;
    padding: 15px 22px;
    border-radius: 999px;
    background: var(--main-color);
@@ -313,5 +319,259 @@
    .pulse {
       animation: none;
       opacity: 0;
+   }
+}
+
+/* TABLET: copy left, actions right, map full width underneath */
+@media (min-width: 768px) and (max-width: 1099px) {
+   .booking {
+      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+         'copy actions'
+         'map  map';
+      align-items: center;
+      column-gap: 36px;
+      row-gap: 36px;
+      margin-top: 48px;
+      padding: 44px 40px 40px;
+      border-radius: 28px;
+   }
+
+   .kicker {
+      font-size: 11.5px;
+   }
+
+   .heading {
+      font-size: 64px;
+      margin: 10px 0 14px;
+   }
+
+   .intro {
+      margin-bottom: 0;
+      font-size: 14.5px;
+      line-height: 1.55;
+   }
+
+   .actions {
+      align-self: center;
+      max-width: none;
+      gap: 10px;
+   }
+
+   .action {
+      grid-template-columns: 46px 1fr 34px;
+      gap: 14px;
+      min-height: 66px;
+      padding: 10px 14px 10px 10px;
+      border-radius: 18px;
+   }
+
+   .icon {
+      width: 46px;
+      height: 46px;
+      font-size: 20px;
+   }
+
+   .label {
+      font-size: 10.5px;
+      letter-spacing: 0.13em;
+   }
+
+   .value {
+      margin-top: 1px;
+      font-size: 17px;
+   }
+
+   .arrow {
+      width: 34px;
+      height: 34px;
+      font-size: 16px;
+   }
+
+   .map {
+      height: 290px;
+      min-height: 0;
+      border-radius: 22px;
+      transform: rotate(0.6deg);
+   }
+
+   .address {
+      left: 18px;
+      bottom: 18px;
+      padding: 12px 16px;
+      border-radius: 16px;
+   }
+
+   .address .label {
+      font-size: 10px;
+   }
+
+   .street {
+      font-size: 16px;
+   }
+
+   .city {
+      font-size: 12.5px;
+   }
+
+   .mapsBtn {
+      right: 18px;
+      bottom: 18px;
+      padding: 14px 20px;
+      font-size: 12.5px;
+   }
+
+   .polaroid {
+      top: -30px;
+      right: -10px;
+      width: 136px;
+      padding: 8px 8px 0;
+   }
+
+   .tape {
+      top: -10px;
+      width: 64px;
+      height: 20px;
+      margin-left: -32px;
+   }
+
+   .polaroidPhoto {
+      height: 110px;
+   }
+
+   .polaroidCaption {
+      height: 28px;
+      font-size: 9.5px;
+   }
+}
+
+/* PHONE: everything stacked; the Maps button becomes a full-width pill */
+@media (max-width: 767px) {
+   .booking {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas:
+         'copy'
+         'actions'
+         'map';
+      margin-top: 40px;
+      padding: 30px 20px 24px;
+      border-radius: 26px;
+   }
+
+   .kicker {
+      font-size: 10.5px;
+   }
+
+   .heading {
+      font-size: 56px;
+      margin: 10px 0 12px;
+   }
+
+   .intro {
+      margin-bottom: 22px;
+      font-size: 14px;
+      line-height: 1.55;
+   }
+
+   .actions {
+      max-width: none;
+      gap: 10px;
+   }
+
+   .action {
+      grid-template-columns: 44px 1fr 32px;
+      gap: 12px;
+      min-height: 64px;
+      padding: 10px 12px 10px 10px;
+      border-radius: 18px;
+   }
+
+   .icon {
+      width: 44px;
+      height: 44px;
+      font-size: 19px;
+   }
+
+   .label {
+      font-size: 10px;
+      letter-spacing: 0.13em;
+   }
+
+   .value {
+      margin-top: 1px;
+      font-size: 16.5px;
+   }
+
+   .arrow {
+      width: 32px;
+      height: 32px;
+      font-size: 15px;
+   }
+
+   .mapWrap {
+      margin-top: 30px;
+   }
+
+   .map {
+      height: 250px;
+      min-height: 0;
+      border-radius: 20px;
+      transform: none;
+   }
+
+   .address {
+      left: 12px;
+      bottom: 12px;
+      padding: 10px 14px;
+      border-radius: 14px;
+   }
+
+   .address .label {
+      font-size: 9.5px;
+   }
+
+   .street {
+      margin-top: 2px;
+      font-size: 15px;
+   }
+
+   .city {
+      font-size: 12px;
+   }
+
+   .mapsBtn,
+   .mapsBtn:hover {
+      position: static;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      margin-top: 14px;
+      transform: none;
+   }
+
+   .polaroid {
+      top: -26px;
+      right: -8px;
+      width: 112px;
+      padding: 7px 7px 0;
+   }
+
+   .tape {
+      top: -9px;
+      width: 56px;
+      height: 18px;
+      margin-left: -28px;
+   }
+
+   .polaroidPhoto {
+      height: 90px;
+   }
+
+   .polaroidCaption {
+      height: 24px;
+      font-size: 9px;
    }
 }

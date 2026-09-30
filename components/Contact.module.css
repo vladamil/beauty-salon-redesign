@@ -51,3 +51,44 @@
    height: 14px;
    fill: var(--second-color);
 }
+
+/* TABLET */
+@media (min-width: 768px) and (max-width: 1099px) {
+   .rings {
+      top: -110px;
+      left: -110px;
+      width: 360px;
+      height: 360px;
+      stroke-width: 2;
+   }
+
+   .sparkleBig {
+      top: 70px;
+      right: 60px;
+      width: 22px;
+      height: 22px;
+   }
+
+   .sparkleSmall {
+      display: none;
+   }
+}
+
+/* PHONE */
+@media (max-width: 767px) {
+   .contact {
+      padding: 20px 0;
+   }
+
+   .rings {
+      top: -70px;
+      left: -80px;
+      width: 240px;
+      height: 240px;
+      stroke-width: 3;
+   }
+
+   .sparkle {
+      display: none;
+   }
+}

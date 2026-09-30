@@ -1,215 +1,222 @@
 .about {
+   position: relative;
+   overflow: hidden;
    background-color: var(--second-color);
    color: var(--bg-color);
-   padding: 60px 0;
+   padding: 40px 0;
 }
 
+.rings {
+   position: absolute;
+   top: -170px;
+   right: -150px;
+   width: 540px;
+   height: 540px;
+   fill: none;
+   stroke: var(--bg-color);
+   stroke-width: 1.5;
+   pointer-events: none;
+}
+
+.rings circle:first-child {
+   opacity: 0.08;
+}
+
+.rings circle:last-child {
+   opacity: 0.05;
+}
+
+.floatingSparkle {
+   position: absolute;
+   top: 50px;
+   left: 18%;
+   width: 22px;
+   height: 22px;
+   fill: var(--main-color);
+   pointer-events: none;
+}
+
+/* Desktop: photos on the left, heading + note + stamps on the right */
 .inner {
-   display: flex;
+   position: relative;
+   z-index: 1;
+   display: grid;
+   grid-template-columns: 540px minmax(0, 1fr);
    align-items: center;
-   justify-content: space-between;
-   gap: 20px;
+   gap: 80px;
 }
 
-.text {
-   flex: 1;
+/* PHOTOS — two taped polaroids with an empty "caption" strip */
+
+.visual {
+   position: relative;
+   height: 620px;
 }
+
+.polaroid {
+   position: absolute;
+   padding: 12px 12px 44px;
+   background: #ffffff;
+   box-shadow: 0 24px 40px -18px rgba(59, 10, 42, 0.5);
+}
+
+.studioShot {
+   top: 0;
+   right: 0;
+   width: 360px;
+   transform: rotate(4deg);
+}
+
+.portrait {
+   left: 10px;
+   bottom: 0;
+   z-index: 2;
+   width: 300px;
+   transform: rotate(-5deg);
+}
+
+.polaroidPhoto {
+   position: relative;
+   overflow: hidden;
+}
+
+.studioShot .polaroidPhoto {
+   height: 300px;
+}
+
+.portrait .polaroidPhoto {
+   height: 330px;
+}
+
+.tape {
+   position: absolute;
+   top: -13px;
+   left: 50%;
+   z-index: 1;
+   width: 96px;
+   height: 26px;
+   margin-left: -48px;
+   background: rgba(232, 99, 122, 0.8);
+   transform: rotate(-4deg);
+}
+
+.photo {
+   object-fit: cover;
+   transition: transform 0.5s cubic-bezier(0.22, 0.68, 0, 1);
+}
+
+.polaroid:hover .photo,
+.stamp:hover .photo {
+   transform: scale(1.05);
+}
+
+/* TEXT */
 
 .kicker {
-   display: block;
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
    font-size: 12px;
    font-weight: 700;
-   letter-spacing: 0.16em;
-   color: var(--main-color);
+   letter-spacing: 0.18em;
+}
+
+.kickerSparkle {
+   width: 14px;
+   height: 14px;
+   fill: var(--main-color);
 }
 
 .heading {
-   font-size: 46px;
-   line-height: 1.02;
-   margin: 12px 0 24px;
-   color: var(--bg-color);
+   /* Scales with the screen so "NE KVANTITET." stays on one line on smaller desktops */
+   font-size: clamp(64px, 6.2vw, 88px);
+   font-weight: 400;
+   line-height: 0.95;
+   margin: 14px 0 30px;
 }
 
-.body {
-   font-size: 16px;
-   line-height: 1.7;
-   font-weight: 500;
-   max-width: 420px;
-   margin: 0 0 24px;
+.accent {
+   color: var(--main-color);
+}
+
+/* The note: white paper with faint ruled lines, slightly tilted */
+.note {
+   padding: 34px 40px 30px;
+   border-radius: 6px;
+   background-color: #ffffff;
+   background-image: repeating-linear-gradient(
+      0deg,
+      transparent 0 33px,
+      rgba(59, 10, 42, 0.07) 33px 34px
+   );
+   background-position: 0 30px;
+   box-shadow: 0 22px 40px -22px rgba(59, 10, 42, 0.45);
+   transform: rotate(1deg);
+}
+
+.noteText {
+   font-size: 21px;
+   font-style: italic;
+   /* Matches the ruled-line spacing so the text sits on the lines */
+   line-height: 34px;
 }
 
 .signature {
    display: flex;
    align-items: center;
-   gap: 10px;
+   gap: 12px;
+   margin-top: 22px;
 }
 
-.avatar {
-   width: 34px;
-   height: 34px;
-   min-width: 34px;
-   border-radius: 50%;
-   background: var(--main-color);
-   display: inline-block;
+.signatureSparkle {
+   width: 22px;
+   height: 22px;
+   fill: var(--main-color);
 }
 
-.signatureText {
+.signatureName {
+   font-family: var(--font-display), 'Arial Narrow', sans-serif;
+   font-size: 28px;
+   letter-spacing: 0.03em;
+}
+
+.signatureRole {
    font-size: 14px;
-   font-weight: 400;
+   font-weight: 500;
+   opacity: 0.75;
 }
 
-.gallery {
+/* STAMPS — three overlapping round photos */
+
+.stamps {
+   display: flex;
+   margin-top: 34px;
+   padding-left: 10px;
+   list-style: none;
+}
+
+.stamp {
+   position: relative;
    flex: none;
-   position: relative;
-   height: 420px;
-   width: 600px;
-}
-
-.polaroid {
-   position: absolute;
-   background: var(--second-color);
-   padding: 14px 14px 34px;
-   box-shadow: 0 18px 34px -14px rgba(59, 10, 42, 0.45);
-   transition: transform 0.3s ease;
-}
-
-.photoOne {
-   left: 40px;
-   top: 10px;
-   width: 230px;
-   transform: rotate(-6deg);
-   z-index: 1;
-}
-
-.photoTwo {
-   right: 60px;
-   top: 60px;
-   width: 250px;
-   transform: rotate(5deg);
-   z-index: 2;
-}
-
-.photoThree {
-   left: 160px;
-   bottom: 0;
-   width: 180px;
-   transform: rotate(4deg);
-   z-index: 3;
-}
-
-.frame {
-   position: relative;
-   width: 100%;
+   width: 112px;
+   height: 112px;
    overflow: hidden;
+   border: 6px solid #ffffff;
+   border-radius: 50%;
+   box-shadow: 0 14px 24px -12px rgba(59, 10, 42, 0.5);
 }
 
-.frameOne {
-   height: 200px;
+.stamp + .stamp {
+   margin-left: -18px;
 }
 
-.frameTwo {
-   height: 220px;
+.stamp:nth-child(2) {
+   z-index: 2;
+   transform: rotate(4deg);
 }
 
-.frameThree {
-   height: 150px;
-}
-
-.photo {
-   object-fit: cover;
-   display: block;
-   transition: transform 0.5s cubic-bezier(0.22, 0.68, 0, 1);
-}
-
-.polaroid:hover .photo {
-   transform: scale(1.045);
-}
-
-/* MEDIA QUERIES */
-
-@media (min-width: 769px) and (max-width: 960px) {
-   .gallery {
-      width: 380px;
-      height: 400px;
-   }
-
-   .photoOne {
-      left: 5px;
-      top: 10px;
-      width: 220px;
-      transform: rotate(-6deg);
-      z-index: 1;
-   }
-
-   .photoTwo {
-      right: 15px;
-      top: 60px;
-      width: 220px;
-      transform: rotate(5deg);
-      z-index: 2;
-   }
-
-   .photoThree {
-      left: 60px;
-      bottom: 0;
-      width: 160px;
-      transform: rotate(4deg);
-      z-index: 3;
-   }
-}
-
-@media screen and (max-width: 768px) {
-   .about {
-      padding: 24px 0;
-      text-align: center;
-   }
-
-   .inner {
-      flex-direction: column;
-      gap: 28px;
-   }
-
-   .text {
-      width: 100%;
-   }
-
-   .body {
-      max-width: none;
-      margin: 0 0 18px;
-   }
-
-   .signature {
-      justify-content: center;
-   }
-
-   .gallery {
-      width: 380px;
-      height: 190px;
-   }
-
-   .photoOne {
-      left: 15%;
-      top: 0;
-      width: 200px;
-      transform: rotate(-5deg);
-   }
-
-   .photoTwo {
-      right: 10%;
-      top: 35px;
-      width: 130px;
-      transform: rotate(6deg);
-   }
-
-   .photoThree {
-      display: none;
-   }
-
-   .frameOne {
-      height: 148px;
-   }
-
-   .frameTwo {
-      height: 108px;
+@media (prefers-reduced-motion: reduce) {
+   .photo {
+      transition: none;
    }
 }

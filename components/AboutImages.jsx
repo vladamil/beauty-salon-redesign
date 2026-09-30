@@ -1,32 +1,40 @@
 import Image from 'next/image';
 import styles from './AboutUs.module.css';
 
-const photos = [
-   { src: '/about/about1.jpg', wrap: styles.photoOne, frame: styles.frameOne },
-   { src: '/about/about4.jpg', wrap: styles.photoTwo, frame: styles.frameTwo },
-   {
-      src: '/about/about3.jpg',
-      wrap: styles.photoThree,
-      frame: styles.frameThree,
-   },
-];
+// Swap this for a photo of Branči when there is one (and update the alt text).
+const PORTRAIT = {
+   src: '/about/about3.jpg',
+   alt: 'Lakovi za nokte',
+};
 
+// Two taped polaroids: the studio in the back, the "portrait" in front.
 export default function AboutImages() {
    return (
-      <div className={styles.gallery}>
-         {photos.map(({ src, wrap, frame }) => (
-            <div key={src} className={`${styles.polaroid} ${wrap}`}>
-               <div className={`${styles.frame} ${frame}`}>
-                  <Image
-                     src={src}
-                     alt="Atelje Bellca Beauty Studio"
-                     fill
-                     sizes="(max-width: 768px) 45vw, 500px"
-                     className={styles.photo}
-                  />
-               </div>
+      <div className={styles.visual}>
+         <div className={`${styles.polaroid} ${styles.studioShot}`}>
+            <div className={styles.polaroidPhoto}>
+               <Image
+                  src="/about/about6.jpg"
+                  alt="Radno mesto u Bellca studiju"
+                  fill
+                  sizes="336px"
+                  className={styles.photo}
+               />
             </div>
-         ))}
+         </div>
+
+         <div className={`${styles.polaroid} ${styles.portrait}`}>
+            <span className={styles.tape} aria-hidden="true" />
+            <div className={styles.polaroidPhoto}>
+               <Image
+                  src={PORTRAIT.src}
+                  alt={PORTRAIT.alt}
+                  fill
+                  sizes="276px"
+                  className={styles.photo}
+               />
+            </div>
+         </div>
       </div>
    );
 }

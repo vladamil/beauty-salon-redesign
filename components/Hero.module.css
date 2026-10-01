@@ -31,6 +31,9 @@
    max-width: 46%;
    margin: 0;
    font-family: var(--font-display), 'Arial Narrow', sans-serif;
+   /* Headings are bold by default; Anton only has one weight, so without
+      this the browser would fake a thicker "bold" version */
+   font-weight: 400;
    font-size: clamp(64px, 7vw, 120px);
    line-height: 0.95;
    color: var(--second-color);
@@ -84,7 +87,6 @@
    color: var(--bg-color);
    border: none;
    border-radius: 999px;
-   outline: none;
    cursor: pointer;
    transform: rotate(-3deg);
    box-shadow: 0 14px 26px -8px rgba(0, 0, 0, 0.5);
@@ -96,6 +98,12 @@
 .cta:hover {
    transform: rotate(-3deg) translateY(-3px);
    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.55);
+}
+
+/* Visible ring for keyboard users (mouse clicks don't show it) */
+.cta:focus-visible {
+   outline: 3px solid var(--second-color);
+   outline-offset: 4px;
 }
 
 /* Tablet: same overlay composition, but a short landscape-proportioned box

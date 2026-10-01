@@ -22,7 +22,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
    return (
-      <html lang="en" className={`${spaceGrotesk.className} ${anton.variable}`}>
+      // sr-Latn = Serbian in Latin script (plain "sr" can mean Cyrillic)
+      <html lang="sr-Latn" className={`${spaceGrotesk.className} ${anton.variable}`}>
          <body>{children}</body>
       </html>
    );

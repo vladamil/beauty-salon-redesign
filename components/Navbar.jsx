@@ -122,13 +122,17 @@ export default function Navbar() {
                </div>
             </div>
          </nav>
-         {/* MOBILE MENU BUTTON */}
-         <div
+         {/* MOBILE MENU BUTTON — a real <button>, so Tab and screen readers reach it */}
+         <button
+            type="button"
             className={styles.mobileBtn}
             onClick={() => setOpenMobileMenu(true)}
+            aria-label="Otvori meni"
+            aria-expanded={openMobileMenu}
+            aria-controls="mobile-menu"
          >
-            <FaBars />
-         </div>
+            <FaBars aria-hidden="true" />
+         </button>
          {/* MOBILE NAVIGATION */}
          <MobileNavbar
             open={openMobileMenu}

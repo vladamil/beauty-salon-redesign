@@ -106,22 +106,40 @@
    display: none;
 }
 
-/* MEDIA QUERIES */
-
-@media screen and (max-width: 960px) {
+/* TABLET + PHONE: the desktop nav doesn't fit below 1100px,
+   so the hamburger button opens the drawer menu instead */
+@media (max-width: 1099px) {
    .navbar {
       display: none;
    }
 
+   /* Plum circle with a soft cream ring and shadow, so it stays visible
+      over every section color — plum, pink and cream */
    .mobileBtn {
-      display: block;
       position: fixed;
-      top: 30px;
-      right: 30px;
-      background: transparent;
-      color: var(--second-color);
-      font-size: 30px;
+      top: 18px;
+      right: 18px;
       z-index: 1000;
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border: 1.5px solid rgba(255, 246, 236, 0.3);
+      border-radius: 50%;
+      background: var(--bg-color);
+      color: var(--second-color);
+      font-size: 22px;
       cursor: pointer;
+      box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.45);
+      transition: transform 0.25s ease;
+   }
+
+   .mobileBtn:active {
+      transform: scale(0.94);
+   }
+
+   .mobileBtn:focus-visible {
+      outline: 3px solid var(--main-color);
+      outline-offset: 3px;
    }
 }

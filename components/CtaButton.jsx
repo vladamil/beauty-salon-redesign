@@ -10,7 +10,7 @@ export default function CtaButton() {
             document.getElementById('kontakt').scrollIntoView();
          }}
       >
-         ZAKAŽITE TERMIN →
+         ZAKAŽITE TERMIN <span aria-hidden="true">→</span>
       </button>
    );
 }

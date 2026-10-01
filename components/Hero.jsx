@@ -24,13 +24,16 @@ export default function Hero() {
             <path d="M12 0l2.2 8.8L23 11l-8.8 2.2L12 22l-2.2-8.8L1 11l8.8-2.2L12 0z" />
          </svg>
 
-         <p className={styles.headline}>
-            NOKTI.
+         {/* The page's one <h1> — its main heading for Google and screen readers */}
+         <h1 className={styles.headline}>
+            {/* {' '} adds a real space before each <br>, so Google and screen
+                readers get "NOKTI. TREPAVICE. MAGIJA." — invisible on screen */}
+            NOKTI.{' '}
             <br />
-            TREPAVICE.
+            TREPAVICE.{' '}
             <br />
             <span className={styles.accent}>MAGIJA.</span>
-         </p>
+         </h1>
 
          <div className={styles.imageWrapper}>
             <svg

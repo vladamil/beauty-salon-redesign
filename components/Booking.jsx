@@ -130,7 +130,7 @@ export default function Booking() {
                rel="noopener noreferrer"
                className={styles.mapsBtn}
             >
-               OTVORI U MAPS →
+               OTVORI U MAPS <span aria-hidden="true">→</span>
             </a>
 
             <div className={styles.polaroid}>

@@ -154,7 +154,7 @@ function Deck({ number, title, label, photos, mirrored, className, onOpen }) {
                onClick={() => step(1)}
                aria-label={`Sledeća fotografija — ${label}`}
             >
-               SLEDEĆA →
+               SLEDEĆA <span aria-hidden="true">→</span>
             </button>
          </div>
 

@@ -15,7 +15,7 @@ export default function AboutImages() {
             <div className={styles.polaroidPhoto}>
                <Image
                   src="/about/about6.jpg"
-                  alt="Radno mesto u Bellca studiju"
+                  alt="Radno mesto u salonu Bellca Beauty Studio"
                   fill
                   sizes="(max-width: 767px) 60vw, (max-width: 1099px) 204px, 336px"
                   className={styles.photo}

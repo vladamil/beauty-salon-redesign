@@ -90,7 +90,7 @@ export default function Nails({ nails }) {
                   <div className={styles.arch}>
                      <Image
                         src={nails[1]}
-                        alt="Noktići urađeni u Bellca studiju"
+                        alt="Noktići urađeni u salonu Bellca Beauty Studio"
                         fill
                         sizes="(max-width: 767px) 220px, (max-width: 1099px) 240px, 360px"
                         className={styles.photo}

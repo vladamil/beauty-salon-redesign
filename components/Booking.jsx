@@ -61,7 +61,10 @@ function MapIllustration() {
             <rect x="350" y="360" width="90" height="70" rx="8" />
             <rect x="200" y="140" width="95" height="40" rx="8" />
          </g>
-         <text className={styles.streetName} transform="translate(40 348) rotate(-2.8)">
+         <text
+            className={styles.streetName}
+            transform="translate(40 348) rotate(-2.8)"
+         >
             JANKA ČMELIKA
          </text>
          <circle className={styles.pulse} cx="316" cy="306" r="18" />
@@ -86,7 +89,9 @@ export default function Booking() {
                <br />
                TERMIN<span className={styles.accent}>.</span>
             </h2>
-            <p className={styles.intro}>Pošaljite poruku ili svratite u studio.</p>
+            <p className={styles.intro}>
+               Pošaljite poruku ili svratite u studio.
+            </p>
          </div>
 
          <ul className={styles.actions}>
@@ -138,7 +143,7 @@ export default function Booking() {
                <div className={styles.polaroidPhoto}>
                   <Image
                      src="/about/about1.jpg"
-                     alt="Bellca studio iznutra"
+                     alt="Bellca Beauty Studio iznutra"
                      fill
                      sizes="150px"
                      className={styles.polaroidImg}

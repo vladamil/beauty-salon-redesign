@@ -47,7 +47,7 @@ export default function Navbar() {
             className={`${scrollNav && styles.navScroll} ${styles.navbar}`}
             aria-label="Main Desktop Nav"
          >
-            <div className={styles.title}>BELLCA STUDIO</div>
+            <div className={styles.title}>BELLCA BEAUTY STUDIO</div>
             <div className={styles.navRight}>
                <ul className={styles.navList}>
                   <li>

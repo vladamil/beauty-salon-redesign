@@ -1,50 +1,364 @@
 .footer {
-   background-color: var(--main-color);
+   position: relative;
+   overflow: hidden;
+   background-color: var(--bg-color);
    color: var(--second-color);
-   border-top: 2px solid var(--second-color);
+   padding-top: 36px;
 }
 
-.content {
+.rings {
+   position: absolute;
+   top: 40px;
+   right: -140px;
+   width: 460px;
+   height: 460px;
+   fill: none;
+   stroke: var(--second-color);
+   stroke-width: 1.5;
+   pointer-events: none;
+}
+
+.rings circle:first-child {
+   opacity: 0.07;
+}
+
+.rings circle:last-child {
+   opacity: 0.05;
+}
+
+/* Desktop: four columns side by side */
+.grid {
+   position: relative;
+   z-index: 1;
+   display: grid;
+   grid-template-columns: 1.4fr 1fr 1.2fr 1fr;
+   grid-template-areas: 'brand menu studio social';
+   gap: 48px;
+   align-items: start;
+}
+
+.brand {
+   grid-area: brand;
+}
+
+.menu {
+   grid-area: menu;
+}
+
+.studio {
+   grid-area: studio;
+}
+
+.social {
+   grid-area: social;
+}
+
+/* BRAND + BACK TO TOP */
+
+.brandName {
+   font-family: var(--font-display), 'Arial Narrow', sans-serif;
+   font-size: 30px;
+   line-height: 1;
+   letter-spacing: 0.02em;
+}
+
+.brandBy {
+   margin-top: 6px;
+   font-size: 14px;
+   font-weight: 500;
+   letter-spacing: 0.06em;
+   color: #c98a9b;
+}
+
+/* Round pink "sticker" that scrolls back to the hero */
+.toTop {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 4px;
+   width: 104px;
+   height: 104px;
+   margin-top: 34px;
+   border-radius: 50%;
+   background: var(--main-color);
+   color: var(--bg-color);
+   font-size: 22px;
+   text-decoration: none;
+   transform: rotate(-8deg);
+   box-shadow: 0 16px 28px -12px rgba(0, 0, 0, 0.55);
+   transition: transform 0.3s cubic-bezier(0.22, 0.68, 0, 1);
+}
+
+.toTop span {
+   font-size: 11px;
+   font-weight: 700;
+   letter-spacing: 0.12em;
+}
+
+.toTop:hover {
+   transform: rotate(0deg) translateY(-4px);
+}
+
+/* COLUMNS */
+
+.label {
    display: flex;
    align-items: center;
-   justify-content: space-between;
+   gap: 8px;
+   margin-bottom: 16px;
+   font-family: inherit;
+   font-size: 11.5px;
+   font-weight: 700;
+   letter-spacing: 0.18em;
+   color: var(--main-color);
+}
+
+.label svg {
+   width: 11px;
+   height: 11px;
+   fill: var(--main-color);
+}
+
+.links {
+   list-style: none;
+}
+
+.link {
+   display: inline-block;
+   padding: 5px 0;
+   color: var(--second-color);
+   font-size: 15px;
+   font-weight: 600;
+   text-decoration: none;
+   transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+}
+
+.link:hover {
+   color: var(--main-color);
+   transform: translateX(4px);
 }
 
 .address {
-   font-size: 14px;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: 1.7;
 }
 
-.small {
-   font-size: 14px;
-   text-align: center;
-   color: rgb(124, 122, 122);
+.phone {
+   display: inline-block;
+   margin-top: 14px;
+   color: var(--second-color);
+   font-size: 18px;
+   font-weight: 700;
+   text-decoration: none;
 }
 
-.socials {
+.phone:hover {
+   color: var(--main-color);
+}
+
+.muted {
+   margin-top: 2px;
+   font-size: 12.5px;
+   color: #c98a9b;
+}
+
+.socialLink {
    display: flex;
    align-items: center;
-   justify-content: space-evenly;
-   font-size: 32px;
-}
-
-.socials a {
+   gap: 12px;
+   padding: 5px 0;
+   color: var(--second-color);
+   font-size: 15px;
+   font-weight: 600;
    text-decoration: none;
-   margin: 20px;
-   color: inherit;
 }
 
-/* MEDIA QUERIES */
+.socialIcon {
+   display: grid;
+   place-items: center;
+   flex: none;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   background: rgba(255, 246, 236, 0.1);
+   font-size: 16px;
+   transition: background 0.25s ease;
+}
 
-@media screen and (max-width: 960px) {
-   .content {
-      flex-direction: column;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
+.socialLink:hover .socialIcon {
+   background: var(--main-color);
+   color: var(--bg-color);
+}
+
+.toTop:focus-visible,
+.link:focus-visible,
+.phone:focus-visible,
+.socialLink:focus-visible {
+   outline: 3px solid var(--main-color);
+   outline-offset: 4px;
+}
+
+/* LEGAL LINE */
+
+.legal {
+   position: relative;
+   z-index: 1;
+   display: flex;
+   justify-content: space-between;
+   gap: 16px;
+   margin-top: 56px;
+   padding-top: 18px;
+   border-top: 1px solid rgba(255, 246, 236, 0.14);
+   font-size: 12.5px;
+   color: #c98a9b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .toTop,
+   .link {
+      transition: none;
+   }
+}
+
+/* TABLET: brand + back-to-top across the top, three columns below */
+@media (min-width: 768px) and (max-width: 1099px) {
+   .rings {
+      width: 360px;
+      height: 360px;
+      right: -120px;
    }
 
-   .socials a {
-      margin: 0 20px;
+   .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-areas:
+         'brand brand  brand'
+         'menu  studio social';
+      gap: 40px 32px;
+   }
+
+   .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   .brandName {
+      font-size: 28px;
+   }
+
+   .toTop {
+      width: 92px;
+      height: 92px;
+      margin-top: 0;
+      font-size: 20px;
+   }
+
+   .legal {
+      margin-top: 44px;
+   }
+}
+
+/* PHONE: brand + sticker on top; menu on the left, studio + social on the right */
+@media (max-width: 767px) {
+   .footer {
+      padding-top: 20px;
+   }
+
+   .rings {
+      top: 20px;
+      right: -110px;
+      width: 260px;
+      height: 260px;
+      stroke-width: 2.5;
+   }
+
+   .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+         'brand brand'
+         'menu  studio'
+         'menu  social';
+      gap: 26px 20px;
+   }
+
+   .brand {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+   }
+
+   .brandName {
+      max-width: 220px;
+      font-size: 24px;
+      line-height: 1.05;
+   }
+
+   .brandBy {
+      font-size: 13px;
+   }
+
+   .toTop {
+      flex: none;
+      width: 70px;
+      height: 70px;
+      margin-top: 0;
+      font-size: 18px;
+   }
+
+   .toTop span {
+      font-size: 9.5px;
+   }
+
+   .label {
+      margin-bottom: 8px;
+      font-size: 10.5px;
+   }
+
+   /* Taller rows so every link is at least 40px to tap */
+   .link {
+      display: flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0;
+   }
+
+   .address {
+      font-size: 14px;
+      line-height: 1.6;
+   }
+
+   .phone {
+      display: flex;
+      align-items: center;
+      min-height: 40px;
+      margin-top: 4px;
+      font-size: 15px;
+   }
+
+   .socialLink {
+      min-height: 48px;
+      padding: 0;
+      gap: 10px;
+      font-size: 14px;
+   }
+
+   .socialIcon {
+      width: 38px;
+      height: 38px;
+      font-size: 15px;
+   }
+
+   .legal {
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 34px;
+      padding-top: 14px;
+      font-size: 11.5px;
    }
 }
